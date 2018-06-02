@@ -9,7 +9,7 @@
 
 
 * Iterative policy evaluation
-	* Bellman expectation equation
+	* Bellman expectation equation 이용
 	* 모든 state  대해서 미리 알고 있는데 어려우니 state value를 지속적으로 update 해감
 	* 처음엔 iteration 마다 변화가 크겠지만 어느 순간부터는 적어질 것
 		* —> 충분히 작은 값 Theta 를 가정하여 이보다 변화가 작은 순간이 오면 iteration 을 중단하게 함
