@@ -9,10 +9,27 @@
 
 
 * Iterative policy evaluation
-	* Bellman expectation equation 이용
+	* Bellman update rule 이용
 	* 모든 state  대해서 미리 알고 있는데 어려우니 state value를 지속적으로 update 해감
-	* 처음엔 iteration 마다 변화가 크겠지만 어느 순간부터는 적어질 것
-		* —> 충분히 작은 값 Theta 를 가정하여 이보다 변화가 작은 순간이 오면 iteration 을 중단하게 함
-	* State value 값이 항상 어디론가 수렴한다는 게 증명돼있음…
-	• 
+		* 처음엔 iteration 마다 변화가 크겠지만 어느 순간부터는 적어질 것
+			* —> 충분히 작은 값 Theta 를 가정하여 이보다 변화가 작은 순간이 오면 iteration 을 중단하게 함
+		* State value 값이 항상 어디론가 수렴한다는 게 증명돼있음…
+
+
+* policy improvement --> policy iteration
+	* 최소한 지금보다는 나은 policy 를 만들기 위해서 value function을 이용해 policy improvement 를 할 수 있음
+		§ State value function 으로 action value function 생성
+		§ Action value 가 가장 큰 방향으로 policy 설정
+
+* Truncated policy iteration
+	* --> variation
+	* Policy evaluation step 을 차이가 작아졌을 때가 아니라 / 몇번 이상 update 한 후 멈추게 할 수 있음
+	* 우리는 각 state에서 가장 큰 값을 찾으면 되는 것 뿐이라서 정말 완벽한 optimal value 를 찾을 때 까지 기다릴 필요가 없는 것!
+
+* Policy improvement : given a value function corresponding to a policy, proposes a better policy
+* Policy iteration : Finds the optima policy through successive rounds of evaluation and improvement
+* (iterative)Policy Evaluation: Computes the value function corresponding to an arbitrary policy
+* Value Iteration : Finds the optimal policy through successive rounds of evaluation and improvement
+
+
 
