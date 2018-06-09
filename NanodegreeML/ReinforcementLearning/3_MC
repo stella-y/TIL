@@ -1,0 +1,7 @@
+	• Control problem
+		○ Policy iteration : sweep through state space until converge
+		○ Truncated policy iteration : do fixed number of sweeps through state space
+		○ Value iteration : do one sweep through state space
+	• Generalized policy iteration
+		○ 위의 세계에서 common한 요소들
+		○ Action value 를 Update 할 때 episode 다 끝나고 하는게 아니고 등장할때마다 iterative 하게 update 해나가
