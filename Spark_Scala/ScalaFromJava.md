@@ -35,7 +35,8 @@ object HelloWorld {
 	    val df = getDateInstance(LONG, Locale.FRANCE)
 	    println(df format now)//요기요기요기!
 	  }
-	}```
+	}
+	```
 	* \* 대신 _ 씀
 	* df format now == df.format(now)
 * 다 객체다
@@ -59,7 +60,8 @@ object HelloWorld {
 			  def main(args: Array[String]) {
 			    oncePerSecond(timeFlies)
 			  }
-			}```
+			}
+		```
 		* 행동을 매초 수행해야할 때에 --> 타이머 함수가 목적함수 실행하게 --> (UI 코드에서 이벤트 발생시의 콜백 함수 등록...)
 			* 콜백함수를 인자로 받는 타이머 함수 구현
 			* 이때에 함수의 type 이 **()=> Unit**
