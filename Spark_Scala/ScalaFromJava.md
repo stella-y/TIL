@@ -1,4 +1,4 @@
-#자바 --> 스칼라
+# 자바 --> 스칼라
 
 ``` scala
 object HelloWorld {
@@ -14,7 +14,8 @@ object HelloWorld {
 * 스칼라 컴파일 & 실행하기
 	1. scalac 컴파일
 		``` shell
-		scalac HelloWorld.scala```
+		scalac HelloWorld.scala
+		```
 		클래스 파일 몇개 생성 --> 스칼라 명령으로 바로 실행 가능한 클래스
 	2.  실행
 		``` shell
@@ -37,7 +38,7 @@ object HelloWorld {
 	  }
 	}
 	```
-	* \* 대신 _ 씀
+	* * 대신 _ 씀
 	* df format now == df.format(now)
 * 다 객체다
 	* 숫자, 함수 뭐 전부 다
@@ -67,6 +68,78 @@ object HelloWorld {
 			* 이때에 함수의 type 이 **()=> Unit**
 				* 인자 안받고 암것도 안돌려주는 함수
 				* unit --> void 와 유사
+* 케이스 클래스 & 패턴매칭
+	* 상속 트리구조
+		* 자바라면 추상 상위클래스 / 노드, 리프 각각에 대한 실제 하위 클래스 정의했을 것
+		* 스칼라에서는 이때에 케이스 클래스 이용!
+	* **케이스 클래스**
+	``` scala
+		abstract class Tree
+		case class Sum(l: Tree, r: Tree) extends Tree
+		case class Var(n: String) extends Tree
+		case class Const(v: Int) extends Tree
+	```
+		* instance 생성시 new 생략 가능
+		* getter 함수 자동 정의됨 / i.v 로 접근 가능(i : instance / v : parameter)
+		* equals / hashCode도!! --> 구조적 동일함 확인(생성된 곳이 달라도 각각의 생성자 파라미터 값이 같으면 같은걸로 여김)
+		* **패턴 매칭** 통해서 따로 사용될 수 있다
+			* (환경 - 변수마다 주어진 값들을 저장해 두는 곳)
+			* 환경 대신 데이터 저장용으로 함수 직접 쓰기 (환경이 변수 명에서 값으로 가는 함수에 지나지 않는다고 생각할수도 있는 것)
+				``` scala
+				{ case "x" => 5 }
+				```
+				x가 인자로 들어올 때 5 리턴
+			* 환경 타입에 이름 붙여주기
+				``` scala
+				type Environment = String => Int
+				```
+				String 에서 int 로 가는 함수타입의 다른 이름
+			``` scala
+			def eval(t: Tree, env: Environment): Int = t match {
+			  case Sum(l, r) => eval(l, env) + eval(r, env)
+			  case Var(n)    => env(n)
+			  case Const(v)  => v
+			}
+			```
+			* 패턴 매칭의 기본 아이디어!
+				**대상이 되는 값을 여러가지 관심있는 패턴에 순서대로 맞춰본 후, 맞는 것이 있으면 맞는 값 중 관심있는 부분에 대해 새로 이름 붙이고, 그 이름 붙인 부분을 사용하는 어떤 작업을 진행!**
+			* 멤버함수 사용과 비교
+				* 멤버함수 쓰는 경우 : 
+					새 노드 추가하려면 하위 클래스 그냥 정의하면 됨
+					근데 트리에 새로운 연산 추가하는 작업이 어려움(tree 의 모든 하위 클래스를 바꿔야 함)
+				* 패턴매칭 쓰면 : 
+					새 노드 추가하려면 패턴매칭하는 모든 함수에서 새 노드 고려하도록 바꿔야 함
+					새 연산 추가는 쉽지(그냥 함수 만들면 되지)
+			* 심볼 추출
+				``` scala
+				def derive(t: Tree, v: String): Tree = t match {
+				  case Sum(l, r) => Sum(derive(l, v), derive(r, v))
+				  case Var(n) if (v == n) => Const(1)
+				  case _ => Const(0)
+				}
+				```
+				* 가드
+					* if 키워드 뒤에 오는 표현식
+						패턴 매칭에 추가적인 조건 부여
+						가드가 거짓이면 패턴 매칭 실패
+				* 와일드 카드
+					* 모든 값과 매치되고 따로 이름 붙이지 않는다
+				``` scala
+				def main(args: Array[String]) {
+				  val exp: Tree = Sum(Sum(Var("x"),Var("x")),Sum(Const(7),Var("y")))
+				  val env: Environment = { case "x" => 5 case "y" => 7 }
+				  println("Expression: " + exp)
+				  println("Evaluation with x=5, y=7: " + eval(exp, env))
+				  println("Derivative relative to x:\n " + derive(exp, "x"))
+				  println("Derivative relative to y:\n " + derive(exp, "y"))
+				}
+				```
+
+* Trait
+	* 상속 외에 여러개 코드 불러올 수 있는 방법
+	* 코드를 가질 수 있는 인터페이스라고 생각하면 됨!
+		* 어떤 class 가 trait 를 상속하면, 그 클래스는 trait 의 interface 를 구현해야만 하고, 동시에 trait 이 가진 모든 코드를 가져오게 됨!
+
 
 
 
