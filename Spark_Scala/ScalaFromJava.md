@@ -79,6 +79,7 @@ object HelloWorld {
 		case class Var(n: String) extends Tree
 		case class Const(v: Int) extends Tree
 	```
+	
 		* instance 생성시 new 생략 가능
 		* getter 함수 자동 정의됨 / i.v 로 접근 가능(i : instance / v : parameter)
 		* equals / hashCode도!! --> 구조적 동일함 확인(생성된 곳이 달라도 각각의 생성자 파라미터 값이 같으면 같은걸로 여김)
