@@ -140,7 +140,71 @@ object HelloWorld {
 	* 상속 외에 여러개 코드 불러올 수 있는 방법
 	* 코드를 가질 수 있는 인터페이스라고 생각하면 됨!
 		* 어떤 class 가 trait 를 상속하면, 그 클래스는 trait 의 interface 를 구현해야만 하고, 동시에 trait 이 가진 모든 코드를 가져오게 됨!
+		``` scala
+		trait Ord {
+		  def < (that: Any): Boolean
+		  def <=(that: Any): Boolean =  (this < that) || (this == that)
+		  def > (that: Any): Boolean = !(this <= that)
+		  def >=(that: Any): Boolean = !(this < that)
+		}
+		```
+			* java 의 comparable 인터페이스와 같은 역할을 함(같다, 같지 않다는 빼고 구현 - 모든 객체에 대해 기본적으로 존재함)
+			* 추상함수 사용함
+			* any : scala 의 최상위 타입(java 의 object type 과 같음)
+		``` scala
+		class Date(y: Int, m: Int, d: Int) extends Ord {
+		  def year = y
+		  def month = m
+		  def day = d
+		  override def toString(): String = year + "-" + month + "-" + day
+		```
+			* extends Ord : 트레잇 상속함
+		``` scala
+		override def equals(that: Any): Boolean =
+		  that.isInstanceOf[Date] && {
+		    val o = that.asInstanceOf[Date]
+		    o.day == day && o.month == month && o.year == year
+		  }
+		```
+			* isInstanceOf : java의 instanceof 와 동일
+			* asInstanceOf : java 의 cast 연산자와 동일(호출된 객체가 인자로 들어온 타입의 인스턴스면 그렇게 여겨지도록 변환 / 아니면 ClassCastException)
+		``` scala
+		def <(that: Any): Boolean = {
+		  if (!that.isInstanceOf[Date])
+		    error("cannot compare " + that + " and a Date")
+		  val o = that.asInstanceOf[Date]
+		  (year < o.year) ||
+		  (year == o.year && (month < o.month ||
+		                     (month == o.month && day < o.day)))
+		}
+		```
+			* error : 주어진 에러 메시지와 함께 예외를 발생 시킴
 
+* Genericity
+	* 걍 제네릭
+		* ex) 연결 리스트의 원소타입 등
+		``` scala
+		class Reference[T] {
+		  private var contents: T = _
+		  def set(value: T) { contents = value }
+		  def get: T = contents
+		}
+		```
+			* 클래스 Reference --> type T 에 대해 파라미터 화 돼있음(type T 는 레퍼런스의 원소타입)
+			* 변수 초기값이 _ : 기본값을 뜻함(wild card)
+				* numeric type 이라면 0, boolean type 이면 false, unit type 이면 (), 모든 객체 타입이면 null
+			* 제네릭 쓰고 나면 이 클래스 나중에 쓸 때에 type parameter T 에 미리 적당한 값 넣어줘야한다
+		``` scala
+		object IntegerReference {
+		  def main(args: Array[String]) {
+		    val cell = new Reference[Int]
+		    cell.set(13)
+		    println("Reference contains the half of " + (cell.get * 2))
+		  }
+		}
+		```
+			* (cell.get * 2) : get 함수의 리턴 값을 정수처럼 쓸 때에 따로 캐스팅 필요치 않다
+			* new Reference[Int] : 정수값만 쓴다고 선언해뒀으니깐 다른 type 을 쓸 수는 없다
 
 
 
