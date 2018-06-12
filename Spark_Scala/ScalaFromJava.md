@@ -1,4 +1,3 @@
-%md
 # 자바 --> 스칼라
 
 ``` scala
@@ -74,12 +73,12 @@ object HelloWorld {
 		* 자바라면 추상 상위클래스 / 노드, 리프 각각에 대한 실제 하위 클래스 정의했을 것
 		* 스칼라에서는 이때에 케이스 클래스 이용!
 	* **케이스 클래스**
-	``` scala
-		abstract class Tree
-		case class Sum(l: Tree, r: Tree) extends Tree
-		case class Var(n: String) extends Tree
-		case class Const(v: Int) extends Tree
-	```
+		``` scala
+			abstract class Tree
+			case class Sum(l: Tree, r: Tree) extends Tree
+			case class Var(n: String) extends Tree
+			case class Const(v: Int) extends Tree
+		```
 		* instance 생성시 new 생략 가능
 		* getter 함수 자동 정의됨 / i.v 로 접근 가능(i : instance / v : parameter)
 		* equals / hashCode도!! --> 구조적 동일함 확인(생성된 곳이 달라도 각각의 생성자 파라미터 값이 같으면 같은걸로 여김)
@@ -210,4 +209,4 @@ object HelloWorld {
 
 
 
-https://docs.scala-lang.org/ko/tutorials/scala-for-java-programmers.html 참고후 정리
+https://docs.scala-lang.org/ko/tutorials/scala-for-java-programmers.html 참고후 정리함
