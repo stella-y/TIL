@@ -73,7 +73,6 @@ import matplotlib.pyplot as plt
 def update_Q(Qsa, Qsa_next, reward, alpha, gamma):
     """ updates the action-value function estimate using the most recent time step """
     return Qsa + (alpha * (reward + (gamma * Qsa_next) - Qsa))
-
 def epsilon_greedy_probs(env, Q_s, i_episode, eps=None):
     """ obtains the action probabilities corresponding to epsilon-greedy policy """
     epsilon = 1.0 / i_episode
@@ -82,7 +81,6 @@ def epsilon_greedy_probs(env, Q_s, i_episode, eps=None):
     policy_s = np.ones(env.nA) * epsilon / env.nA
     policy_s[np.argmax(Q_s)] = 1 - epsilon + (epsilon / env.nA)
     return policy_s
-
 def sarsa(env, num_episodes, alpha, gamma=1.0):
     # initialize action-value function (empty dictionary of arrays)
     Q = defaultdict(lambda: np.zeros(env.nA))
