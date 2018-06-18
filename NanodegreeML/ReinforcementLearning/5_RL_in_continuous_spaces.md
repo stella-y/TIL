@@ -16,9 +16,20 @@
 
 * Discrete spaces
 	* 이전까지는 다 discrete 한 상황을 가정했음
-	* state, state*action pair 모두 유한함을 가정하고 function 설계
+	* state, state\*action pair 모두 유한함을 가정하고 function 설계
 	* 이게 무한해지면 다룰 수 없게 되지(Q-learning 도 마찬가지)
 * Countinuous space 에서
 	* 실제 상황은 여기에 더 가까움
-	* descritization/ function approximation 등의 방법 사용해야
-	
+	* discritization/ function approximation 등의 방법 사용해야
+
+* discritization
+	* constant grid
+	* tile coding
+	* course coding
+* function approximation
+	* directly approximating a coutinuous value function
+		* define a feature transformation compute a linear combination of those features
+		* V(s, W) =?
+		* x(s) =[x1(s) ... xn(s)]
+		* V(s, W)=x(s)^t dot w
+		* linear combination of features
