@@ -25,15 +25,16 @@
 ## Algorithm
 * 	• 각 feature 별로 평균, 표준편차 구한 다음 normalize
 	• Scale factor 와 shift factor 이용해 새 값 만들어줌
+	![algorithm](./image/batchmornalization1.png "algorithm")
 	• 실제 적용시킬때는 hidden layer 에 들어가기 전에 batch normalization layer 를 더해주어 input 을 modify 해준 뒤 새 값을 activation function 으로 넣는다
-<그림>
+![algorithm](./image/batchmornalization2.png "algorithm")
 * Test 할 때
 	* Mini-batch 의 값 이용하는 대신 training 할 때 봤던 input 들의 moving average / unbiased variance estimate 의 moving average 이걸 계산해서 저장해놓고 이 값으로 normalize
 	* 마지막에 gamma, beta 이용해서 scale/shift 해주는 건 동일함
 		* Training 할 때는 mini-batch 의 평균, 분산으로 normalize
 		* Scale factor, shift factor 이용해서 새 값 만듦
 		* Scale, factor, shift factor 는 다른 layer 에서 weight 를 학습하듯이 back-propagation
-<그림>
+![onTest](./image/batchmornalization3.png "onTest")
 
 	* CNN 이면 좀 달라짐
 		* convolution의 성질을 유지시키고 싶기 때문에, 각 channel을 기준으로  각각의 Batch Normalization 변수들을 만든다. 예를 들어 m의 mini-batch-size, n의 channel size 를 가진 Convolution Layer에서 Batch Normalization을 적용시킨다고 해보자. convolution을 적용한 후의 feature map의 사이즈가 p x q 일 경우, 각 채널에 대해 m x p x q 개의 각각의 스칼라 값에 대해 mean과 variance를 구하는 것이다. 최종적으로 gamma와 beta는 각 채널에 대해 한개씩 해서 총 n개의 독립적인 Batch Normalization 변수들이 생기게 된다.
@@ -42,3 +43,5 @@
 * Gradient explode/vanish & local min 문제 --> parameter scale 에 영향을 받지 않게 된다(learning rate 를 크게 잡아도 됨)
 * 자체적인 regularization 효과가 있음
 	* Weight regularization term 등을 제외할 수 있으며 dropout 을 제외할 수 있음(dropout 효과랑 BN의 효과가 같음)
+
+[참고](https://shuuki4.wordpress.com/2016/01/13/batch-normalization-%EC%84%A4%EB%AA%85-%EB%B0%8F-%EA%B5%AC%ED%98%84/)
