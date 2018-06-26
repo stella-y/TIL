@@ -10,6 +10,7 @@
 	* Continuous 할 때에는 가우시안 분포 안에 있다고 가정하고 적용
 	* 뮤, 시그마는 고정이라고 가정
 	![lf_with_gaussian](image/7_2.png "lf_with_gaussian")
+
 # objective function
 * 어떤 policy 가 좋은지 평가
 ![objective_function](image/7_3.png "objective_function")
