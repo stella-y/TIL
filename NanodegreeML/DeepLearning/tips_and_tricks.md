@@ -7,3 +7,22 @@
 		a. 20개 자료정도로 0cost 가 나오는지 확인해봐야해(정규화 강도를 0으로 해 놓고)
 		b. 작은 자료에서 확인이 제대로 안되면 전체 과정이 무가치함
 # 학습 과정 확인(babysitting the learning process)
+
+# gpu 사용시(jupyter notebook keras tensorflow)
+* jupyter notebook 은 물려있는 장비 전체의 메모리를 점유해버림
+   * 장비 선택해두는게 필수적임
+   ```python
+   os.environ['CUDA_VISIBLE_DEVICES']="1" #장비번호 설정
+   ```
+   * 쓰는만큼 메모리주는것도 설정해둬야함
+   ``` python
+   import tensorflow as tf
+   config=tf.ConfigProto()
+   config gpu_options.allow_growth=True
+   sess=tf.Session(config=config)
+   import keras.backend.tensorflow_backend as K
+   K.set_session(sess)
+   ```
+   * 장비를 진짜 여러개 쓰려면
+   https://keras.io/utils/#multi_gpu_model 참고
+   
