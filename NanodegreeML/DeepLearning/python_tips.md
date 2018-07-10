@@ -39,3 +39,38 @@
       ``` python
       from ..sound.echo import echo_test
       ```
+* Python stype guide
+ * https://www.python.org/dev/peps/pep-0008/
+ 
+* 예외처리
+ 1. try, except만 쓰는 방법
+  ``` python
+  try:
+    ...
+  except:
+    ...
+  ```
+    이 경우는 오류 종류에 상관없이 오류가 발생하기만 하면 except 블록을 수행한다.
+  2. 발생 오류만 포함한 except문
+   ``` python 
+   try:
+    ...
+   except 발생 오류:
+    ...
+   ```
+   이 경우는 오류가 발생했을 때 except문에 미리 정해 놓은 오류 이름과 일치할 때만 except 블록을 수행한다는 뜻이다.
+  3. 발생 오류와 오류 메시지 변수까지 포함한 except문
+   ``` python
+   try:
+    ...
+   except 발생 오류 as 오류 메시지 변수:
+    ...
+   ```
+   이 경우는 두 번째 경우에서 오류 메시지의 내용까지 알고 싶을 때 사용하는 방법이다.
+   이 방법의 예를 들어 보면 다음과 같다.
+   ``` python
+    try:
+        4 / 0
+    except ZeroDivisionError as e:
+        print(e)
+   ```
