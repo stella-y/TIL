@@ -18,3 +18,16 @@
 	![Adjusted_rand_index](image/15_2.png "Adjusted_rand_index")
 		* A - 같은데 있는 두개가 같은데 있는 경우
 		* B - 다른데 있는 두개가 다른데 있는 경우
+* Internal validation indices
+	* Label 된 정답 data 가 없는 경우
+		* 또 뭐 여러가지가 있엉...
+		![internal_validation_indices](image/15_3.png "internal_validation_indices")
+		* silhouette coefficient
+			![silhouette_coefficient](image/15_4.png "silhouette_coefficient")
+			* A - 동일한 cluster 내에서 다른 sample 까지의 거리 평균
+			* B - 가장 가까운 cluster 의 sample 까지의 거리 평균
+			![silhouette_coefficient_example](image/15_5.png "silhouette_coefficient_example")
+			* 몇개의 class 로 나누는것이 적당한지 찾을 수도 있지
+			![silhouette_coefficient_example2](image/15_6.png "silhouette_coefficient_example2")
+			* 근데 항상 모델에 적용될 수 있는 수치는 아니야(dbscan 같은 알고리즘을 비교하자고 이 수치를 쓸 수는 없어)
+			* 이거 대신 dbscan 에서 쓸 수 있는게 DBCV(Density Based Clustering Validation)
