@@ -1,3 +1,4 @@
+## Random Projection
 * One of the dimension reduction method
 	* PCA 보다 computationally 더 효율적이다
 	* 아무 축이나 만들어서 projection 시켜버려
@@ -9,3 +10,11 @@
 		* Eps 는 차원 축소 후 발생하는 error 를 얼마나 허용할 것인가를 뜻함
 		* 아래와 같은 조건으로
 		![rp](image/8_3.png "rp")
+
+## ICA
+* Independent Component Analysis
+	* Pca - maximize variance / 
+	* Ica - feature 들은 독립적인 source 들의 mixture 로 봐
+	* 이 독립적인 source 들을 dataset 에서 추출해 낸다는 개념
+	* 대표적인 예 - 칵테일 파티 문제 / blind source separation
+	![ica_concept](image/8_4.png "ica_concept")
