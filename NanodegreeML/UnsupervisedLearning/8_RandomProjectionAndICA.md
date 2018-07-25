@@ -18,3 +18,12 @@
 	* 이 독립적인 source 들을 dataset 에서 추출해 낸다는 개념
 	* 대표적인 예 - 칵테일 파티 문제 / blind source separation
 	![ica_concept](image/8_4.png "ica_concept")
+* fastICA algorithm
+	1. center, whiten x
+	2. choose initial random weight matrix w1, w2, w3,...
+	3. estimate w, containing vectors
+	4. decorrelate w
+	5. repeat from step #3 until converged
+	![factica](image/8_5.png "factica")
+
+	* 
