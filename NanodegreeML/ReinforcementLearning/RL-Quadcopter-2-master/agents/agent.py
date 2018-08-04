@@ -1,8 +1,11 @@
 # TODO: your agent here!
+import numpy as np
+
 from task import Task
 from agents.actor import Actor
 from agents.critic import Critic
 from ou_noise import OUNoise
+from replay_buffer import ReplayBuffer
 
 class DDPG():
     """Reinforcement Learning agent that learns using DDPG."""
