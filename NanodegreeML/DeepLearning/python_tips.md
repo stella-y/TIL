@@ -74,3 +74,12 @@
     except ZeroDivisionError as e:
         print(e)
    ```
+   * blas 
+       * basic linear algebra system
+       * 벡터 및 행렬 연산을 관장하는 스펙 
+       * GNU Octave2, Mathematica, NumPy, R, 그리고 아래의 LAPACK 등 다양한 소프트웨어에 사용된다. BLAS를 잘 설정하고 다루면 같은 코드를 돌리더라도 몇 배에 달하는 속도 향상을 이룰 수 있기 때문에 잘 이해하고 있으면 좋다
+       * Blas 구현체
+           * NVIDIA의 CUDA용 cuBLAS, AMD의 ACML, 인텔의 MKL, 애플의 Accelerate Framework안에 포함된 vecLib, 오픈소스인 ATLAS, 그리고 아마 가장 범용적으로 쓰이는 오픈소스 OpenBLAS 등이 있으며 그 외에도 다양한 구현체가 있다.
+           https://www.lucypark.kr/blog/2015/09/06/blas-benchmarks/
+       * benchmark test 해보고 성능향상할 부분 있으면 해둬야
+       
