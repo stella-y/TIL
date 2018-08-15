@@ -1,3 +1,34 @@
+## user profiles in multiple systems - 목적
+* cross-sell products and services
+* provide recommendations to new users
+* 해결을 위한 시도는 2009년부터
+
+## problems related to cross-domain RSs
+* Machine learning
+	* multi-task learning / transfer learning
+* user modeling
+	* aggregation user preferences for cross system personalization, targeted adv. security
+* Context aware recommender
+	* 서로다른 도메인을 서로다른 context로
+* Hybrid recommender (Ensemble learing)
+	* adaboost --> hybrid
+	* bootstrap / blending --> cross domain
+
+## cross domain recommendations
+* single-domain : 각 도메인들을 독립적으로 다뤄
+* collective-domain : 여러 도메인을 합쳐서 하나의 도메인인것처럼 활용
+* cross-domain : source 에서 target 으로 knowledge를 transfer
+	* 가정 : 유저와 아이템 사이에 overlap 이 있다
+
+### cross-domain recommendation goals
+* cold start 문제의 해결
+* 정확도 향상
+	- sparsity 줄이기 등
+* 추천에 added value 제공하기
+	- diversity, novelty, serendipity
+* user model 향상
+	- 신규 유저의 선호 찾기 등
+
 ## cold start recommandation
 * content / profile based methods
     * content: for new items
@@ -24,7 +55,7 @@
 	* source domain 이 bias가 되거나 noise 가 되거나
 	 --> 근데 이건 weight 를 어떻게 주느냐에 대한 문제로 귀결됨
  	* two approaches
- 			![approaches](images/crossdomain_1.png "approaches")
+ 		![approaches](images/crossdomain_1.png "approaches")
  		* linking/aggregating knowledge
  			* user preferences merge 하기
  			* user modeling data 를 중재함
