@@ -66,4 +66,8 @@
 		○ 1,2번은 self attention / 3 번이 기존에 우리가 썼던 방식
 		○ Lstm 이 없어서 속도가 짱 빠르댕
 		
-		
+Attention --> gradient vanishing 을 예방 / attention 에서 출력을 할때에도, 다음 step으로 넘어갈때에도 물어봐(얼마나 weight를 줘야할지 등)
+E1, e2, e3, e4 는 hidden state or output 값이야
+	Dot product 에 normalization 해서 값을 내 --> 학습을 이렇게 하면 잘 나와
+	Attention weight 라는게 원래는 또 있을거고, hyperbolic tangent 등이 막 있을거야(개념적으로는 이런 것) 만약 없다면 앞 뒤에 있는 weight 값을 활용하게 될거야
+
