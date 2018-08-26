@@ -153,3 +153,7 @@ jq '[.[] | {message: .commit.message, name: .commit.committer.name, parents: [.p
   }
 ]
 ```
+
+https://stedolan.github.io/jq/tutorial/
+https://jqplay.org/
+http://totuworld.github.io/2016/01/20/shell-jq/
