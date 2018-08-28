@@ -16,3 +16,12 @@ val encoder=new OneHotEncoder()
 val encoded=encoder.transform(indexed)
 encoded.show()
 ```
+
+## vector 합치기
+```scala
+import org.apache.spark.ml.feature.VectorAssembler
+
+var assembler=new VectorAssembler().
+        setInputCols(Array("amt", "item_type_index", "buy_lev3_vec", "brand_lev2_vec")).
+        setOutputCol("agg_item_vec")
+```

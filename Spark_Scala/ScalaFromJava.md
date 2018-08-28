@@ -219,7 +219,11 @@ object FrenchDate {
 		* new Reference[Int] : 정수값만 쓴다고 선언해뒀으니깐 다른 type 을 쓸 수는 없다
 
 
+## object & class
+
 
 
 
 https://docs.scala-lang.org/ko/tutorials/scala-for-java-programmers.html 참고후 정리함
+http://skyul.tistory.com/335
+http://hamait.tistory.com/579
