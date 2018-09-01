@@ -219,7 +219,68 @@ object FrenchDate {
 		* new Reference[Int] : 정수값만 쓴다고 선언해뒀으니깐 다른 type 을 쓸 수는 없다
 
 
-## object & class
+### 함수 언어
+```scala
+object Timer {
+     def oncePerSecond(callback: () => unit) {
+         while (true) { callback(); Thread sleep 1000 }
+     }
+     def timeFlies() {
+         println("time flies like an arrow...")
+     }
+     def main(args: Array[String]) {
+         oncePerSecond(timeFlies)
+     }
+}
+```
+* 1초마다 한번씩 callback 으로 넘어온 timeFiles 호출
+* ```scala
+Thread sleep 100
+```
+	* 인자가 하나인 method 를 호출할때는 . 생략하고 쓸 수 있음
+
+
+### 초기화 block
+* java에서
+```java
+public class Square {
+    int x;
+    int y;
+    boolean b = true;
+ 
+    {
+        x = Math.abs(-10);
+        x += 10;
+        y = 7;
+        b = !true;
+    }
+}
+```
+
+* scala 에서
+```scala
+class Person(val firstName: String, val lastName: String) { 
+	println("the constructor begins") // 희안하죠? 객체로 만들어지는 동시에 호출됩니다. 
+	val fullName = firstName + " " + lastName 
+	val HOME = System.getProperty("user.home"); 
+	def foo { println("foo") } 
+	def printFullName { println(fullName) } 
+
+	printFullName // 희안하죠? 객체로 만들어지는 동시에 호출됩니다. 
+	println("still in the constructor") // 희안하죠? 객체로 만들어지는 동시에 호출됩니다. 
+} // 다음과 같이 나옵니다. 클래스 내부의 것들이 생성됨과 동시에 실행되네요. 
+
+scala> val p = new Person("Alvin", "Alexander") 
+the constructor begins Alvin Alexander still in the constructor 
+p: Person = Person@68f507d2
+```
+
+### 기타
+
+* def의 사용
+	* val과 def의 차이
+		* 연산 시점
+		* val은 val을 선언하는 시점에 우변을 계산해서 값을 할당하는 반면에 def는 실제로 사용되는 시점마다 우변을 새로 계산한다.
 
 
 
@@ -227,5 +288,6 @@ object FrenchDate {
 https://docs.scala-lang.org/ko/tutorials/scala-for-java-programmers.html 참고후 정리함
 http://skyul.tistory.com/335
 http://hamait.tistory.com/579
+http://kamang-it.tistory.com/122
 https://blog.outsider.ne.kr/476
 https://jdm.kr/blog/85
