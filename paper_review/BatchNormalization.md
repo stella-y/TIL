@@ -15,6 +15,7 @@
 					* Input u 를 받아 x=u+b 의 output 내고, 적절한 bias b를 학습하는 네트워크에서 x 에 E[x]를 빼준다
 					* E[x]를 빼는 과정에서 b의 값이 같이 빠지고, 결국 output 에서 b 의 영향이 없어짐
 					* 표준편차로 나눠주는 scaling 과정까지 들어가면 이 경향은 더 악화된다
+
 ## 해결
 * Feature 들이 이미 uncorrelated 돼 있다고 가정하고, feature 각각에 대해서만 scala 형태로 mean 과 variance 를 구하고 각각을 normalize 함
 * Normalize 된 값들에 scale factor(gamma)랑 shift factor(beta)를 더하고 이 변수들을 back-prop 과정에서 같이 train 시켜줌
