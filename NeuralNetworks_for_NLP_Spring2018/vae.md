@@ -25,3 +25,21 @@
 			* The attention values a 
 			* The output word ids e
 
+### Variational Auto-encoders
+* We believe that there are underlying latent factors that affect the text/images/speech that we are observing --> 이게 이렇게 관찰된데는 다 이유가 있을거다 라는 가정 (해 봐야 알 수 있는 것들)
+        * What is the content of the sentence?
+        * Who is the writer/speaker?
+	 What is their sentiment?
+	What words are aligned to others in a translation?  (번역관점 - hard attention 관점)
+	
+### loss function
+(그림)
+* 위에 두개는 결국 같은 식(marginalized out)
+* --> 평균 식이라고 볼 수 있으니깐 optimize 는 sampling 으로
+* 복원 추출 샘플링개념처럼 이해할 수 있을 듯
+* 근데 아무 근거 없이 샘플링하고 연결짓고 하는 과정을 계속 반복하다보니깐 엄청 비싸고 비효율적일 수 있음
+* --> p(x|z)를 구할 때에 그냥 하지말고 p(z|x) 를 구해서 이어지도록 하자
+* X --> p(z|x) --> z --> p(x|z) --> x 이 과정으로 평가하고 피드백 받을 수 ㄷ있도록
+
+### reparametrization
+
