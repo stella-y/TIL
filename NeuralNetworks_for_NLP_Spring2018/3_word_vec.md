@@ -10,7 +10,7 @@
 			* count-based method
 				* word-context count matrix
 					* co-occurrence 세기 (rows as word, columns as contexts)
-					* weight - pointwise mutual information / reduce dimensions with svd
+					* weight - pointwise mutual듯information / reduce dimensions with svd
 			* prediction-based method
 				* 부차적인 결과물로서 word embedding 을 기대하는 것
 				* language model 등의 결과물로...
