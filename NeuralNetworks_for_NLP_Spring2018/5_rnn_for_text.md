@@ -27,3 +27,30 @@
 			* C_t : 냉장고라 표현 / 전달되는 것들을 c로 따로 빼놔
 			* I --> gate (sigmoid) -~100% 사이에서 냉장고에 몇퍼센트나 넣어 놓을 것인가
 			* O --> output 에 얼마나 많이 넣을 것인가
+	* 이외에도 여러 대안이 있당
+		* Lots of variants of LSTMs (Hochreiter and Schmidhuber, 1997)
+		* Gated recurrent units (GRUs; Cho et al., 2014)
+		* All follow the basic paradigm of "take input, update state"
+2. Efficiency/Memory tricks
+* Handling mini-batching
+	* minibatch 를 하는게 훨씬 빠르지만 feed-forward network 에서 하는것과 비교하면 rnn 에서 이걸 하는게 훨씬 어렵다
+		* 각 단어들이 이전단어에 종속적이고 / sequence 의 길이가 다 다르니...
+	* 길이가 다른 문제점에 해결법! --> padding
+		* 단 이때에 얘들은 backprop 하지 않겠다는 표시 해 두어야한다(masking)
+		![minibatch_with_padding](images/5_6.png "minibatch_with_padding")
+	* 해결법 2!!
+		* padding 너무 많이하면 성능이 될 수 있다 (batch 하나에 빈칸만 잔뜩들어가게 될 수 있기때문에...)
+		* Bucketing/sorting
+			* 길이가 비슷한 sentence 끼리 같은 batch 로 돌아가게해서 성능이 향상될 수 있을 것
+			* Sentence 길이가 비슷해서 공간 낭비가 크지 않게 될것이당
+* Handling long sequences
+	* 긴 문장에서 long-term dependency 를 capture 하고 싶어질 경우가 있음
+	* 근데 이게 메모리에 맞지 않는다면...
+	* 해결법! --> Truncated BPTT
+		* BackPropagation Through Time
+		* State 는 그대로 가는데 backpropagation 은 처음부터 끝까지 다 하는게 아니고 중간에까지만 해버리는 것
+		![Truncated_BPTT](images/5_7.png "Truncated_BPTT")
+
+
+
+
