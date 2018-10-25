@@ -51,6 +51,10 @@
 		* State 는 그대로 가는데 backpropagation 은 처음부터 끝까지 다 하는게 아니고 중간에까지만 해버리는 것
 		![Truncated_BPTT](images/5_7.png "Truncated_BPTT")
 
-
+### Pre-training/Transfer learning for rnn
+* rnn 이 성능은 좋은데 데이터가 많이 필요하고, 오래걸림
+* 하나의 task 에 대해서 train 한다음에 다른 문제를 풀게해
+* pre-training task 는 학습이 쉽고 데이터 양이 많은 task / main task 는 학습이 어렵고 데이터가 적은 task
+	* Language Model --> sentence classifier
 
 
