@@ -19,4 +19,28 @@
 	* 모든 time step 에서의 input 으로 전달하거나
 	![hidden_state](images/8_6.png "hidden_state")
 
-
+### Generation 방법
+* P(Y|X) 의 모델에서 sentence 를 어떻게 추출할 것인가
+	1. Sampling
+		확률 분포에 따라서 random 하게 문장 생성
+	2. Argmax
+		가장 높은 확률을 가지는 문장 생성
+* Ancestral Sampling
+	![generate1](images/8_6.png "generate1")
+	* 단어를 하나하나 random 하게 생성
+		* Random 하게 뽑아서 그 중에 가장 높은걸로 취해나가
+		* 다 할 수 있다면 무조건 이게 나을 수 밖에 없지
+		(원하는 바를 정확히 구하는 공식일 것)
+	* 단점 : Random 하게 다 할 수 있다면 이게 무조건 좋겠지 근데 한 없이 많은 양을 sampling 할 수 없지
+* Greedy search
+	![generate2](images/8_7.png "generate2")
+	* 가장 확률이 높은걸로 찍어내
+	* 단점
+		* 일반적인 말만 나오겠지
+		(easy word first)
+	 	* Global optimum 을 구할 수가 없음
+* Beam search
+	![generate3](images/8_8.png "generate3")
+	* 가장 큰걸 뽑는게 아니고, 몇개의 path 에 대해서는 남겨둔다
+	(Top k 를 보겠다!)
+	* 매 step 마다 상위 k 개를 남기고 parsing 한다
