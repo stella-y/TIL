@@ -26,21 +26,40 @@
 	2. Argmax
 		가장 높은 확률을 가지는 문장 생성
 * Ancestral Sampling
-	![generate1](images/8_6.png "generate1")
+	![generate1](images/8_7.png "generate1")
 	* 단어를 하나하나 random 하게 생성
 		* Random 하게 뽑아서 그 중에 가장 높은걸로 취해나가
 		* 다 할 수 있다면 무조건 이게 나을 수 밖에 없지
 		(원하는 바를 정확히 구하는 공식일 것)
 	* 단점 : Random 하게 다 할 수 있다면 이게 무조건 좋겠지 근데 한 없이 많은 양을 sampling 할 수 없지
 * Greedy search
-	![generate2](images/8_7.png "generate2")
+	![generate2](images/8_8.png "generate2")
 	* 가장 확률이 높은걸로 찍어내
 	* 단점
 		* 일반적인 말만 나오겠지
 		(easy word first)
 	 	* Global optimum 을 구할 수가 없음
 * Beam search
-	![generate3](images/8_8.png "generate3")
+	![generate3](images/8_9.png "generate3")
 	* 가장 큰걸 뽑는게 아니고, 몇개의 path 에 대해서는 남겨둔다
 	(Top k 를 보겠다!)
 	* 매 step 마다 상위 k 개를 남기고 parsing 한다
+
+### Model Ensemble
+* 여러개의 prediction model 합치기
+![Ensemble](images/8_10.png "Ensemble")
+* 왜
+	* Multiple models make somewhat uncorrelated errors
+	* Models tend to be more uncertain when they are about to make errors
+	* Smooths over idiosyncrasies of the model
+* Linear interpolation
+	* Uniform 하게 하는 경우가 종종있음
+	![li](images/8_11.png "li")
+* Log-linear interpolation
+	* 어디에 집중할 것인가 \*(곱하기) 실제 model 의 probability
+	![loglinear](images/8_12.png "loglinear")
+* 두 모델의 비교
+	![comp](images/8_13.png "comp")
+
+
+
