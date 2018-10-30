@@ -20,4 +20,7 @@
 	![PI2](images/7_3.png "PI2")
 	1.  Convolutional Features + Matrix-based Pooling (Yin and Schutze 2015)
 		![PI2_e](images/7_4.png "PI2_e")
-
+	2. Paraphrase Detection w/ Discriminative Embeddings (Ji and Eisenstein 2013)
+		* word/context vector 에 대해 matrix factorization
+			* word/context vector 에 대한 구분력으로 weight 를 매겨
+		(다시 찾아보자...)	
