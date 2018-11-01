@@ -60,6 +60,17 @@
 	![loglinear](images/8_12.png "loglinear")
 * 두 모델의 비교
 	![comp](images/8_13.png "comp")
-
-
-
+* Parameter averaging
+	* Deep learning model 은 parameter 갯수가 앙상블 하면 너무 많다
+	* 해결 : parameter averaging 
+		* Weight vector 의 값들을 averaging 하는 것
+		* Weight 를 쭉 끌고가서 moving average 를 취하는 방식으로
+		* 보정하는 정도의 역할로(완전히 따로 돈 다음에 average 를 취하는건 아주 말이 안됨)
+* Ensemble distillation
+	* 일단 앙상블을 만듦
+	* 앙상블 모델이 학습한 결과를 똑같이 만들어내는 또다른 모델을 만들어 냄
+	(teacher model 은 여러 모델이 다 들어가는데 얘를 흉내내니깐 하나만 있으면 되는 것)
+	* 모델의 크기를 줄이게 될 수 있음
+* stacking
+	* prediction output이 매우 다른 두 모델이 있는 경우
+	* 하나의 시스템의 output 을 또 다른 시스템의 feature 로 사용
