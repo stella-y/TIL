@@ -19,7 +19,6 @@
 	* Microsoft Research Paraphrase Corpus (Dolan and Brockett 2005) 
 		* news corpus 를 다 모은다음에 비슷해 보이는걸 분리함
 		--> 5800 sentences (질은 좋은데 양이 적엉)
-
 * 모델1 - sentence 를 vector 로 나타내고 이 둘사이의 similarity 를 계산(두 문장이 같다 틀리다)하는 classifier(logistic regression or NN or jaccard 등 여러가지)로 돌려
 	![PI](images/7_2.png "PI")
 	1. Skip-thought Vectors (Kiros et al. 2015)
@@ -47,4 +46,49 @@
 		* 이를 다시 kl-divergence 로
 		![using_mf](images/7_7.png "using_mf")
 		우측 상위로 갈수록 비슷한 단어 / 좌측 하단으로 갈 수록 안비슷한 단어
+
+## Semantic Similarity
+* 의미적인 유사도
+* 데이터셋 예시
+	* SICK dataset
+		* flickr/video description sentence 이용
+		* 전처리
+			* normalize - 동의어로 replace
+			* create opposit - negation, antonyms(반의어) 등 삽입
+			* scramble words - 단어 순서 섞기(?)
+		* 이러고 나서 사람들에게 물어서 이 문장이 얼마나 유사한지를 물어봄
+		* evaluation procedure
+			* (아까는 classification 문제로 봤지만)이번엔 regression 문제로 봐서, score 가 사람이 매긴것과 얼마나 비슷한지를 평가
+* Siamese LSTM Architecture
+	![Siamese](images/7_8.png "Siamese")
+	* 과정
+		* 두 문장에 대해서 곱해지는 weight matrix 를 완전히 같게 해
+		* 두 문장의 vector 를 알아내고
+		* similarity 는 l1 loss 를 쓴 것
+		* sigmoid 해서 scale 이 0에서 1사이로 나오게 해서
+	* 단순한 모델인데도 성능은 짱 좋대
+
+## Textual Entailment
+* 의미
+	* Entailment: if A is true, then B is true (c.f. paraphrase, where opposite is also true)
+		* The woman bought a sandwich for lunch
+		→ The woman bought lunch
+		숨은 의미로 참임을 알 수 있음
+	* Contradiction : A 가 참이면 B 가 거짓임을 알 수 있음
+	* Neutral : 관계가 없어서 서로의 참 거짓 여부를 알 수 없는 것
+* 데이터 셋 :Stanford Natural Language Inference Dataset
+	* Flickr caption 만들어(Entailment, Neutral, Contradiction 생성)
+* Multi-perspective Matching for NLI (Wang et al. 2017)
+	![Entail1](images/7_9.png "Entail1")
+	* 관계를 알아내야 하는 두개의 문장(맨아래 두개)이 들어와
+	* Context representation layer 에서는 sequence 니깐 그냥 BiRNN 써버려
+	* Matching layer 에서는 matrix 전체가 들어오게 되니깐 attention 을 써 (이 큰 매트릭스 안에서 어떤 정보에 집중해야하는지 알아내야 하니깐)
+	* 그러고 나면 Matching layer 위의 파란색 vector 에는 Context 정보 + attention 정보를 합친게 만들어질거야
+	* BiRNN 을 다시 돌려
+	* Sequence 를 다 돌린 마지막 정보를 aggregation layer 로 올려서 concat 시켜
+	* 그러고 regression 해서 softmax 빡
+	
+
+
+
 
