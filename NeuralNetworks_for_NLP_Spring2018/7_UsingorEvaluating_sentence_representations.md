@@ -87,7 +87,25 @@
 	* BiRNN 을 다시 돌려
 	* Sequence 를 다 돌린 마지막 정보를 aggregation layer 로 올려서 concat 시켜
 	* 그러고 regression 해서 softmax 빡
+* Interesting Result: Entailment → Generalize (Conneau et al. 2017)
+	* entailment 는 text 의 뉘앙스, 컨텍스트 등을 잘 파악함 --> unsupervised model(skip thought -> 뉘앙스 없이 앞뒤 문장정도, language model 등) 좀 더 generalize 한 enbedding 결과를 제공해 줄 수 있을거라는 생각
+	* 논문 결과로는 이게 꽤 괜찮은 결과였댕
+	* 근데 한글은 없어용
+
+## Retrieval
+* Retrieval idea
+	* input sequence 가 주어지면 거기에 맞는 무언가를 찾아주는 것(검색) - 결과는 text 일수도, image 일수도
+* Basie Idea
+	* 모든 원본 텍스트 같은걸 vector 화 / indexing
+	* query 왔을 떄에 similarity 를 구하건 뭘 하건 해서 답변을 내게 하면 될 것
+* First attempt
+	* 검색 task 에 대해서는 학습이 아니고, 고정된 function 으로 vector 화 해왔어(TF-IDF, BM25 등)
+	* 이걸 이젠 학습 가능한 function 으로 바꿔보자
+		* lossfunction 지정(답에 가까울 수록 작아지게)
+* Margin-based Training
+	* loss function=max(0, 1+x_n-x_p)
 	
+
 
 
 
