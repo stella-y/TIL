@@ -103,7 +103,35 @@
 	* 이걸 이젠 학습 가능한 function 으로 바꿔보자
 		* lossfunction 지정(답에 가까울 수록 작아지게)
 * Margin-based Training
-	* loss function=max(0, 1+x_n-x_p)
+	* 맞는 것과 아닌 것 사이가 1 이상씩 났으면 좋겠어서 적용
+	* loss function=max(0, 1+x_n-x_p) 이렇게 구성해서 weight 학습
+	* Negative sampling
+		* database 가 너무 크니까, negative sample 하는 수를 제한할거다(positive 1개에 negative 100개 하는 등)
+		* Negative sample 은 정답이 아닌 나머지에서 random sample
+		* loss function
+			![lf](images/7_10.png "lf")
+			아래의 1이 margin
+			s(x, y\*) - 여기서의 x 가 negative sample 한 것 / 여기서의 값이 커지면 loss 커지는 것
+			s(x\*, y\*) 여기서의 x\* 가 정답
+
+### Efficient Training
+* mini-batch training
+	* 한 minibatch 에서 다른 나머지들을, negative sample 이라 가정하고 learning
+	* 한 minibatch 를 16이라고 꼽는다면 0번째에 대해서 계산할때에 minibatch 안의 나머지의 1~12번째 row 에서 random 하게 negative sampling 을 하겠다는 것
+	* batch size 를 최소 16 이상은 되어야 말이 될 것(크면 클 수록 좋겠지)
+* Bidirectional loss
+	* q 에 대해서 가장 loss 가 작은 d를 꼽는 것도 말이 되지만 d 에 대해서 가장 작은 q를 꼽는 것도 말이 될 것
+* Efficient Retrieval
+	* LSH 
+		* locality 가 보존되도록 hashing 값을 정하는 것
+	* 이런 hashing 방법을 retrieval 에 적용
+		* collision 이 발생하는 document 에 대해서만 관찰하겠다
+	![efficientretrieval](images/7_11.png "efficient retrieval")
+
+
+
+
+
 	
 
 
