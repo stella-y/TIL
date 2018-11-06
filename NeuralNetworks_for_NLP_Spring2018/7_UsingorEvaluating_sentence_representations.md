@@ -1,6 +1,6 @@
 ## sentence representation
 * 문장을 vector 로
-	![sent_vec](images/7_5.png "sent_vec")
+	![sent_vec](images/7_5.PNG "sent_vec")
 	1. 문장 전체를 1차원 벡터(3\*1)로 만들거나
 	2. 아니면 단어 하나씩에대해서 vector 하나로 놓고, 그 네개 단어를 붙여서 다차원 벡터를 만들거나(3\*4) --> attention 계열이 이쪽을 활용한 것
 * 활용
@@ -9,7 +9,7 @@
 
 ### Sentence Classification
 * topic, sentiment, subjectivity/objectivity 등등 여러가지로 분류해둬
-	![general_model](images/7_6.png "general_model")
+	![general_model](images/7_6.PNG "general_model")
 	embedding 붙여서 cnn or rnn 후 softmax --> prob 계산
 
 #### Paraphrase Identification
@@ -44,7 +44,7 @@
 		(딥러닝 보다, mf 같은 방법론이 여전히 유효하다! 라는 의미에서 --> 의외로 paraphrasing 에서는 지금도 mf 방법론의 성능이 제일 좋대- 위에서 나왔던 MSRPC 데이터에대해 적용해보면 이게 제일 좋대)
 		* word vs context 의 matrix 가 있을 때에 이걸 mf 하고나면 context를 모르던 word 들에 대해서도 채워질 것
 		* 이를 다시 kl-divergence 로
-		![using_mf](images/7_7.png "using_mf")
+		![using_mf](images/7_7.PNG "using_mf")
 		우측 상위로 갈수록 비슷한 단어 / 좌측 하단으로 갈 수록 안비슷한 단어
 
 ## Semantic Similarity
@@ -60,7 +60,7 @@
 		* evaluation procedure
 			* (아까는 classification 문제로 봤지만)이번엔 regression 문제로 봐서, score 가 사람이 매긴것과 얼마나 비슷한지를 평가
 * Siamese LSTM Architecture
-	![Siamese](images/7_8.png "Siamese")
+	![Siamese](images/7_8.PNG "Siamese")
 	* 과정
 		* 두 문장에 대해서 곱해지는 weight matrix 를 완전히 같게 해
 		* 두 문장의 vector 를 알아내고
@@ -79,7 +79,7 @@
 * 데이터 셋 :Stanford Natural Language Inference Dataset
 	* Flickr caption 만들어(Entailment, Neutral, Contradiction 생성)
 * Multi-perspective Matching for NLI (Wang et al. 2017)
-	![Entail1](images/7_9.png "Entail1")
+	![Entail1](images/7_9.PNG "Entail1")
 	* 관계를 알아내야 하는 두개의 문장(맨아래 두개)이 들어와
 	* Context representation layer 에서는 sequence 니깐 그냥 BiRNN 써버려
 	* Matching layer 에서는 matrix 전체가 들어오게 되니깐 attention 을 써 (이 큰 매트릭스 안에서 어떤 정보에 집중해야하는지 알아내야 하니깐)
