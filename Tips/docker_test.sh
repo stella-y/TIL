@@ -44,3 +44,19 @@ python_deployer.deploy_python_closure(clipper_conn, name="sum-model", version=3,
 NV_GPU=7 nvidia-docker run --memory="512m" -p 8501:8501 half_plus_two_gpu
 
 --memory="1g" --memory-swap="2g"
+
+
+
+// --cpu-period와 --cpu-quota를 이용하여 CPU 스케줄링 결정
+// 1G 메모리와 2G의 스왑 메모리를 지정
+// CPU 1번을 집중사용하도록 지정
+// 위의 옵션으로 컨테이너 구동
+$docker run -i -t --memory="1g" --memory-swap="2g" --cpuset-cpus=0 --cpu-period=100000 --cpu-quota=50000 --name centos1 centos:7
+
+
+// --cpus를 이용하여 cpu 스케줄링 결정
+// 1G 메모리와 2G의 스왑 메모리를 지정 
+// CPU 1번을 집중사용하도록 지정 
+// CPU의 스케줄링시 0.5만큼만 할당
+// 위의 옵션으로 컨테이너 구동 
+$docker run -i -t --memory="1g" --memory-swap="2g" --cpuset-cpus=0 --cpus=0.5 --name centos1 centos:7
