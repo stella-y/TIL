@@ -1,4 +1,4 @@
-## sentence representation
+## Sentence Representation
 * 문장을 vector 로
 	![sent_vec](images/7_5.PNG "sent_vec")
 	1. 문장 전체를 1차원 벡터(3\*1)로 만들거나
@@ -47,7 +47,7 @@
 		![using_mf](images/7_7.PNG "using_mf")
 		우측 상위로 갈수록 비슷한 단어 / 좌측 하단으로 갈 수록 안비슷한 단어
 
-## Semantic Similarity
+### Semantic Similarity
 * 의미적인 유사도
 * 데이터셋 예시
 	* SICK dataset
@@ -68,7 +68,7 @@
 		* sigmoid 해서 scale 이 0에서 1사이로 나오게 해서
 	* 단순한 모델인데도 성능은 짱 좋대
 
-## Textual Entailment
+### Textual Entailment
 * 의미
 	* Entailment: if A is true, then B is true (c.f. paraphrase, where opposite is also true)
 		* The woman bought a sandwich for lunch
@@ -92,7 +92,7 @@
 	* 논문 결과로는 이게 꽤 괜찮은 결과였댕
 	* 근데 한글은 없어용
 
-## Retrieval
+### Retrieval
 * Retrieval idea
 	* input sequence 가 주어지면 거기에 맞는 무언가를 찾아주는 것(검색) - 결과는 text 일수도, image 일수도
 * Basie Idea
@@ -114,7 +114,7 @@
 			s(x, y\*) - 여기서의 x 가 negative sample 한 것 / 여기서의 값이 커지면 loss 커지는 것
 			s(x\*, y\*) 여기서의 x\* 가 정답
 
-### Efficient Training
+#### Efficient Training
 * mini-batch training
 	* 한 minibatch 에서 다른 나머지들을, negative sample 이라 가정하고 learning
 	* 한 minibatch 를 16이라고 꼽는다면 0번째에 대해서 계산할때에 minibatch 안의 나머지의 1~12번째 row 에서 random 하게 negative sampling 을 하겠다는 것
