@@ -66,3 +66,33 @@
 	* More beam search in training A Continuous Relaxation of Beam Search for End-to-end Training of Neural Sequence Models (Goyal et al., 2017)
 		* 그냥 뉴럴 넷 넣어버리는 것
 		□ 
+
+## A* algorithm
+* A* search
+	* Iteratively expand paths that have the cheapest total cost along the path
+	* total cost = cost to current point + estimated cost to goal
+	* f(n) = g(n) + h(n) 
+		* g(n): cost to current point 
+		* h(n): estimated cost to goal
+		* h should be admissible and consistent
+* Classical A* parsing A* Parsing: Fast Exact Viterbi Parse Selection (Klein et al., 2003)
+	* PCFG parsing 에 잘 working 한대(exact 니깐)
+		![classic](images/20181109_1.png "classic")
+	* Estimating future costsLearning to Decode for Future Success (Li et al., 2017)
+		![fs](images/20181109_2.png "fs")
+		* 아마도 따로 학습했을 듯
+	* Benefits:
+		* With heuristic, has nice optimality guarantees
+		* Strong results in CCG parsing
+	* Drawbacks:
+		* Needs more construction than beam search, can’t easily throw on existing model
+		* Requires a good heuristic for optimality guarantees --> 휴리스틱 찾기가 짱 어려워
+
+## Other search algorithms
+* Particle Filters A Bayesian Model for Generative Transition-based Dependency Parsing (Buys et al., 2015)
+	* Reranking
+		* Recurrent Neural Network Grammars (Dyer et al. 2016)
+		* 여러 모델 reranking
+			* Ex) translate model A 가 있고, beam search 가 beam size 만큼 나오고 나면, 그 뒤에 language model 같은거 붙여서 어떤게 더 높은 점수 받는지를 놓는다
+	* Monte-Carlo Tree Search 
+			§ 열심히 sampling 해서 탐색한다
