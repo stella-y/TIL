@@ -8,8 +8,31 @@
 spark.sparkContext
 val prev=spark.read.csv("/user/stella/linkage")
 prev.show()
-prev.printSchema()
+>>+-----+-----+-----------------+------------+------------+------------+-------+------+------+------+-------+--------+
+|  _c0|  _c1|              _c2|         _c3|         _c4|         _c5|    _c6|   _c7|   _c8|   _c9|   _c10|    _c11|
++-----+-----+-----------------+------------+------------+------------+-------+------+------+------+-------+--------+
+| id_1| id_2|     cmp_fname_c1|cmp_fname_c2|cmp_lname_c1|cmp_lname_c2|cmp_sex|cmp_bd|cmp_bm|cmp_by|cmp_plz|is_match|
+|37291|53113|0.833333333333333|           ?|           1|           ?|      1|     1|     1|     1|      0|    TRUE|
+|39086|47614|                1|           ?|           1|           ?|      1|     1|     1|     1|      1|    TRUE|
+|70031|70237|                1|           ?|           1|           ?|      1|     1|     1|     1|      1|    TRUE|
+|84795|97439|                1|           ?|           1|           ?|      1|     1|     1|     1|      1|    TRUE|
+|36950|42116|                1|           ?|           1|           1|      1|     1|     1|     1|      1|    TRUE|
+|42413|48491|                1|           ?|           1|           ?|      1|     1|     1|     1|      1|    TRUE|
 
+prev.printSchema()
+>>root
+ |-- _c0: string (nullable = true)
+ |-- _c1: string (nullable = true)
+ |-- _c2: string (nullable = true)
+ |-- _c3: string (nullable = true)
+ |-- _c4: string (nullable = true)
+ |-- _c5: string (nullable = true)
+ |-- _c6: string (nullable = true)
+ |-- _c7: string (nullable = true)
+ |-- _c8: string (nullable = true)
+ |-- _c9: string (nullable = true)
+ |-- _c10: string (nullable = true)
+ |-- _c11: string (nullable = true)
 ```
 
 * 누락값 처리 등 간단한 가공 -> spark 의 csv reader 가 reader api 에서 설정할 수 있는 옵션을 통해 이 기능을 제공하고 있음
@@ -20,6 +43,31 @@ val parsed=spark.read
             .option("inferSchema", "true")
             .csv("/user/stella/linkage")
 parsed.printSchema()
+>>root
+ |-- id_1: integer (nullable = true)
+ |-- id_2: integer (nullable = true)
+ |-- cmp_fname_c1: double (nullable = true)
+ |-- cmp_fname_c2: double (nullable = true)
+ |-- cmp_lname_c1: double (nullable = true)
+ |-- cmp_lname_c2: double (nullable = true)
+ |-- cmp_sex: integer (nullable = true)
+ |-- cmp_bd: integer (nullable = true)
+ |-- cmp_bm: integer (nullable = true)
+ |-- cmp_by: integer (nullable = true)
+ |-- cmp_plz: integer (nullable = true)
+ |-- is_match: boolean (nullable = true)
+```
+
+## type지정 통한 성능향상
+* spark 은 스키마 유추 위해서 데이터셋을 두번 읽게 됨
+    1. 읽으면서 각열의 데이터 타입 파악
+    2. 다시 읽으면서 실제 파싱 수행
+* 그렇기때문에 스키마 미리 알고있다면 org.apache.spark.sql.types.StructType의 인스턴스 생성해서 schema 함수 통해서 reader api 에 미리 넘겨주는게 성능 향상에 좋다!
+
+## 읽기 가능 형식
+* json, parquet, orc, odbc, libsvm, text. 등
+``` scala
+val d1=spark.read.format("json").load("file.json")
 ```
 
 * 데이터 프레임을 이미 존재하는 파일에 저장하려고 하면 오류가 발생함
