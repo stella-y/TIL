@@ -18,3 +18,21 @@ df.groupby().max('A').collect()[0].asDict()['max(A)']
 ```scala
 df.select("A").rdd.max()[0]
 ```
+
+* spark context 에서 udf 만들기
+```scala
+sqlContext.udf.register("slice", (array : Seq[String], from : Int, to : Int) => array.slice(from,to))
+```
+
+* array concat
+```scala
+var df_news3=df_news2.withColumn("contents", concat_ws("\n", col("slice")))
+```
+
+* 각 row 를 다른 파일안에 저장하고 싶을 때
+(rdd 에서 하는 법만 알아냄 / dataframe 에서 rdd 로 변환 후 사용)
+```scala
+rdd_df_news5.count()
+sc.hadoopConfiguration.set("mapred.output.compress", "false")
+rdd_df_news5.repartition(rows.toInt).saveAsTextFile("/user/stella/news_0701_10/")
+```
