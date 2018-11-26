@@ -19,6 +19,7 @@ df.groupby().max('A').collect()[0].asDict()['max(A)']
 df.select("A").rdd.max()[0]
 ```
 
+<<<<<<< HEAD
 * concate two or more columns
 ```scala
 import org.apache.spark.sql.functions.{concat, lit}
@@ -29,4 +30,22 @@ df.select(concat($"k", lit(" "), $"v"))
 df = df.withColumn('joined_column', 
                     sf.concat(sf.col('colname1'),sf.lit('_'), sf.col('colname2')))
 df.show()
+=======
+* spark context 에서 udf 만들기
+```scala
+sqlContext.udf.register("slice", (array : Seq[String], from : Int, to : Int) => array.slice(from,to))
+```
+
+* array concat
+```scala
+var df_news3=df_news2.withColumn("contents", concat_ws("\n", col("slice")))
+```
+
+* 각 row 를 다른 파일안에 저장하고 싶을 때
+(rdd 에서 하는 법만 알아냄 / dataframe 에서 rdd 로 변환 후 사용)
+```scala
+rdd_df_news5.count()
+sc.hadoopConfiguration.set("mapred.output.compress", "false")
+rdd_df_news5.repartition(rows.toInt).saveAsTextFile("/user/stella/news_0701_10/")
+>>>>>>> 991a17ea3e757d53ee65c7ed9e57ff90a618f599
 ```
