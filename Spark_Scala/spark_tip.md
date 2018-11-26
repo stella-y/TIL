@@ -18,3 +18,15 @@ df.groupby().max('A').collect()[0].asDict()['max(A)']
 ```scala
 df.select("A").rdd.max()[0]
 ```
+
+* concate two or more columns
+```scala
+import org.apache.spark.sql.functions.{concat, lit}
+
+df.select(concat($"k", lit(" "), $"v"))
+```
+```scala
+df = df.withColumn('joined_column', 
+                    sf.concat(sf.col('colname1'),sf.lit('_'), sf.col('colname2')))
+df.show()
+```
