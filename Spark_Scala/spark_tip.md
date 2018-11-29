@@ -19,7 +19,6 @@ df.groupby().max('A').collect()[0].asDict()['max(A)']
 df.select("A").rdd.max()[0]
 ```
 
-<<<<<<< HEAD
 * concate two or more columns
 ```scala
 import org.apache.spark.sql.functions.{concat, lit}
@@ -46,6 +45,5 @@ var df_news3=df_news2.withColumn("contents", concat_ws("\n", col("slice")))
 ```scala
 rdd_df_news5.count()
 sc.hadoopConfiguration.set("mapred.output.compress", "false")
-rdd_df_news5.repartition(rows.toInt).saveAsTextFile("/user/stella/news_0701_10/")
->>>>>>> 991a17ea3e757d53ee65c7ed9e57ff90a618f599
+rdd_df_news5.repartition(rows.toInt).saveAsTextFile("/user/stella/news_0701_10/")s
 ```
