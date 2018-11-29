@@ -77,3 +77,37 @@ retokenize.tokenize(emma_raw[50:100])
 stemming, lemmatizing, pos tagging
 
 https://datascienceschool.net/view-notebook/118731eec74b4ad3bdd2f89bab077e1b/
+* lematization
+	* PorterStemmer()
+	* LansterStemmer()
+```python
+words = ['lives', 'crying', 'flies', 'dying']
+
+from nltk.stem import PorterStemmer
+st = PorterStemmer()
+[st.stem(w) for w in words]
+'''['live', 'cri', 'fli', 'die']'''
+
+from nltk.stem import LancasterStemmer
+st = LancasterStemmer()
+[st.stem(w) for w in words]
+#['liv', 'cry', 'fli', 'dying']
+```
+
+
+```python
+from nltk.tag import pos_tag
+sentence = "Emma refused to permit us to obtain the refuse permit"
+tagged_list = pos_tag(word_tokenize(sentence))
+tagged_list
+'''[('Emma', 'NNP'),
+ ('refused', 'VBD'),
+ ('to', 'TO'),
+ ('permit', 'VB'),
+ ('us', 'PRP'),
+ ('to', 'TO'),
+ ('obtain', 'VB'),
+ ('the', 'DT'),
+ ('refuse', 'NN'),
+ ('permit', 'NN')]'''
+```
