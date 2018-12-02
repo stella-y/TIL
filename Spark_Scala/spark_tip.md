@@ -29,7 +29,6 @@ df.select(concat($"k", lit(" "), $"v"))
 df = df.withColumn('joined_column', 
                     sf.concat(sf.col('colname1'),sf.lit('_'), sf.col('colname2')))
 df.show()
-=======
 * spark context 에서 udf 만들기
 ```scala
 sqlContext.udf.register("slice", (array : Seq[String], from : Int, to : Int) => array.slice(from,to))
