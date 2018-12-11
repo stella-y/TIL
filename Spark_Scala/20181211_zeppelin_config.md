@@ -1,0 +1,2 @@
+* archive file 위치 지정 방법
+	* spark interpreter 의 properties 항목에 spark.yarn.dist.archives 아래에 hdfs://aa/lib/dha_resources-2.8.43-default.tar.gz, hdfs://aa/lib/dha_resources-2.8.15-default.tar.gz 이런식으로 지정함
