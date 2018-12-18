@@ -7,7 +7,7 @@
 	* 디용량 지원성이 필수적
 	* kafka
 * 머신러닝
-	* Apache mahout, ms Asure ml, spark ml
+	* Apache mahout, MS Asure ml, spark ml
 * 이벤트 처리
 	* 특정 조건에 대해서 이벤트를 발생시키는 것 = CEP(Complex Event Processing)
 	* EDA(Event Driven Architecture) : 이를 구현한 아키텍쳐
