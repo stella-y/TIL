@@ -15,5 +15,12 @@
 	7. sudo mount /mnt/aa
 	8. 끗
 
-
-
+### fuse restart
+* 퓨즈를 안심하고 막쓰다보면 곧 맛이 간다... --> 되도록 하둡명령어를 쓰자...
+* fuse 메모리 사용량이 너무 증가할때에... --> kill 시켜버리고 unmount 하자
+* unmount & mount
+	```sh
+	# unmount
+	sudo fusermount -u /mnt/aa-hadoop
+	sudo mount /mnt/aa-hadoop
+	```
