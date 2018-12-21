@@ -18,3 +18,23 @@ git remote add origin <remote repository URL>
 git remote -v
 git push -u origin master
 ```
+
+### remote repository
+* 하나의 프로젝트를 여러 repository 에 저장할 수 있다(읽기 가능 레포, 읽기 쓰기 모두 가능한 레포 등으로 기능화해서 사용도 가능)
+* remote repo 확인
+```sh
+git remote -v # remote repo 확인
+# .git/config 에서도 확인 가능
+git remote add <단축이름> <url> # 저장소 추가
+git remote show <리모트 저장소 이름> #
+git remote rename <a1> <a2> # a1의 alias 를 a2로 바꾼당
+git remote remove <a2> # a2 repo 를 삭제
+# 해당 리모트에 관련된 추적 브랜치 정보, 모든 설정내용 다 같이 삭제됨
+
+git pull #remote repo branch 에서 데이터를 가져오기 + 자동으로 local branch 와 merge
+git push <remote repo 이름> <branch> #해당 remote repo 의 해당 branch 로 push
+
+```
+* .git/config 에서도 확인 가능
+
+
