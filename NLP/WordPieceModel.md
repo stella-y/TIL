@@ -17,13 +17,18 @@
 * --> 이런식으로 하려면 언어학적 지식, 학습데이터가 필요해짐
 * --> Word piece model(sentence piece) tokenizer
 	*  Heuristic 이용한 것 --> 빈도수를 이용하여 어떤 unit으로 나눌지를 결정
+1. 한 글자 단위로 모두 띄어 초기화(character 는 기본 subword unit인 것)
+2. loop 돌면서 빈도수 가장 많은 bigram 찾기
+3. bigram 을 하나의 unit 으로 merge
+- 2~3의 과정을 num_merges 만큼 반복
+
 
 ### BPE(Byte-pair Encoding)
 * Neural Machine Translation of Rare Words with Subword Units (Sennrich et al., 2015)
 * Byte pair encoding --> 데이터 압축 방법
 	* 빈도수가 많은 최장 길이의 substring 을 하나의 unit 으로 만들면 bit 를 아낄 수 있음
 	* 자주 이용하는 단어는 그 자체가 unit 이 되며, 자주 등장하지 않는 단어는 subword unit 으로 나뉘어짐
-	* 
+* BytePairEncoder(n_units)은 n_units 개수만큼 subword unit 학습
 
 
 ### 
