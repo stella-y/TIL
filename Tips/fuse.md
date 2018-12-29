@@ -7,10 +7,10 @@
 	3. (sudo -i apt-key update)
 	sudo -i setproxy apt-get update
 	4. sudo -i setproxy apt-get install hadoop-hdfs-fuse
-	5. sudo mkdir -p /mnt/aa : mount point 지정
+	5. sudo mkdir -p /mnt/aa-hadoop : mount point 지정
 	6. /etc/fstab 수정
 	```
-	hadoop-fuse-dfs#dfs://aa-hadoop-nn2.dakao.io:8020        /mnt/aa          fuse    usetrash,big_writes,rw,nonempty 2 0
+	hadoop-fuse-dfs#dfs://aa-hadoop-nn2.dakao.io:8020        /mnt/aa-hadoop          fuse    usetrash,big_writes,rw,nonempty 2 0
 	```
 	7. sudo mount /mnt/aa
 	8. 끗
