@@ -77,15 +77,32 @@ object FrenchDate {
 	* 자바라면 추상 상위클래스 / 노드, 리프 각각에 대한 실제 하위 클래스 정의했을 것
 	* 스칼라에서는 이때에 케이스 클래스 이용!
 * **케이스 클래스**
-	``` scala
+	```scala
 		abstract class Tree
 		case class Sum(l: Tree, r: Tree) extends Tree
 		case class Var(n: String) extends Tree
 		case class Const(v: Int) extends Tree
 	```
+	* 손쉽게 내용을 어떤 클래스에 저장하고, 그에 따라 매치를 하고 싶은 경우 사용
+		* **(케이스 클래스는 패턴 매치와 사용하기 위해 설계된 것)**
 	* instance 생성시 new 생략 가능
+	* 케이스 클래스의 생성자 파라미터는 public 으로 다뤄지며 직접접근 가능하지만 직접 수정은 불가(field 앞에 var 을 넣어두면 가능하지만 권장되지 않고, 기본적으로는 val 로 선언됨)
+	* copy 메서드로 복사본 만들 수 있음 (e.g. val copyed_obj=obj.copy(par1="asdf"))
+	* 모든 케이스 클래스에서 스칼라 컴파일러는 구조적 동등성 구현한 equals 메서드, toString 메서드 생성함
+	```scala
+	case class Calculator(brand: String, model: String)
+	//defined class Calculator
+	//
+	//케이스 클래스는 자동으로 생성자 인자에 따른 동등성 검사와 toString 메소드를 제공함
+	val hp20b = Calculator("HP", "20b")
+	//hp20b: Calculator = Calculator(hp,20b)
+	val hp20B = Calculator("HP", "20b")
+	//hp20B: Calculator = Calculator(hp,20b)
+	hp20b == hp20B
+	//res6: Boolean = true
+	```
 	* getter 함수 자동 정의됨 / i.v 로 접근 가능(i : instance / v : parameter)
-	* equals / hashCode도!! --> 구조적 동일함 확인(생성된 곳이 달라도 각각의 생성자 파라미터 값이 같으면 같은걸로 여김)
+
 	* **패턴 매칭** 통해서 따로 사용될 수 있다
 		* (환경 - 변수마다 주어진 값들을 저장해 두는 곳)
 		* 환경 대신 데이터 저장용으로 함수 직접 쓰기 (환경이 변수 명에서 값으로 가는 함수에 지나지 않는다고 생각할수도 있는 것)
