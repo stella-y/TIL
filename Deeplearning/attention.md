@@ -10,3 +10,7 @@
   * Alpha_ij=exp(e_ij)/sigma(exp(e_ij)
     * e_ij=a(s_i-1, h_j)
 	* 이전 스텝의 hidden state vector s_i-1과 인코더는 j번째 벡터 h_j가 얼마나 유사한지를 나타내는 스코어를 쓴다
+	![attention](images/att_1.png "1")
+	![attention](images/att_2.png "2")
+	![attention](images/att_3.png "3")
+	![attention](images/att_4.png "4")
