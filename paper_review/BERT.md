@@ -15,3 +15,9 @@
     * 입력 시퀀스 전체의 의미를 N번 만큼 반복적으로 구축하는걸 의미 —> 블럭 수가 많을수록 단어장에 보다 복잡한 관계 포착 가능할 것
 		* Rnn과 유사하게 병렬처럼 아니라 전체가 recursive하게 반복 처리되는 형태
     * 블럭 내 입력 처리 결과는 매번 residual connection으로 처리 (non-linear activation 거치지 않고 network직접 흐르게 하여 explod, vanishing gradient 문제를 최소화)
+  * multi head attention
+    * 서로 다른 가중치 행렬 이용해서 attention 을 h 번 계산한 다음 이를 concat한 결과 가져감
+    * scaled dot-product attention (Q K V)
+      * (일반적으로) Q: decoder 의 hidden state / K : incoder 의 hidden state / V : K 에 normalized weight
+      * bert 에선 decoder 를 안써서 초기의 Q, K, V 값이 같다
+        --> 동일한 토큰이 문장 내의 다른 토큰에 대한 self-attention 효과를 갖는다 
