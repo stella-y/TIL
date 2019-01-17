@@ -24,3 +24,5 @@ https://www.ithome.com.tw/video/120391
 	* http://cyberx.tistory.com/143
 	* http://www.devinline.com/2016/01/apache-spark-setup-in-eclipse-scala-ide.html
 	* https://www.slideshare.net/DOHYUNGPARK2/ss-75269927
+	* http://scala-ide.org/
+--> jar 로 뽑아낸 후 shell 에서 spark-submit 실행시키는 방식
