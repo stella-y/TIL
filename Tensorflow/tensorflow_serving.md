@@ -71,7 +71,5 @@ with g.as_default():
         tf.saved_model.signature_constants.DEFAULT_SERVING_SIGNATURE_DEF_KEY : signature_definition
     })
   builder.save()
-  for i in tf.get_default_graph().get_operations():
-    print(i)
 
 ```
