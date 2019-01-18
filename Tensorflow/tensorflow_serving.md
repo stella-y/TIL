@@ -46,43 +46,32 @@ builder.save()
 
 #### 예시 코드
 ```python
-
 g = tf.Graph()
 with g.as_default():
-  encoder = s2v_encoder.s2v_encoder(model_config)#encoder 파일에서 가져오면서 tensor 변형 있어서 이렇게 한것임 / 사실 그냥 checkpoint 파일에서 그냥 읽어오면 됨
+  encoder = s2v_encoder.s2v_encoder(model_config)
   restore_model = encoder.build_graph_from_config(model_config)
-
-with tf.Session() as sess:
-    graph=g
-    sess.run(tf.global_variables_initializer())
-    #get input, output tensors
-    encode_ids=graph.get_tensor_by_name('encode_ids:0')
-    encode_mask=graph.get_tensor_by_name('encode_mask:0')
-    enc=graph.get_tensor_by_name('encoder/thought_vectors:0')
-    enc_out=graph.get_tensor_by_name('encoder_out/thought_vectors:0')
-
-input_encode_ids=tf.saved_model.utils.build_tensor_info(encode_ids)
-input_encode_mask=tf.saved_model.utils.build_tensor_info(encode_mask)
-output_enc=tf.saved_model.utils.build_tensor_info(enc)
-output_enc_out=tf.saved_model.utils.build_tensor_info(enc_out)
-
-signature_definition = tf.saved_model.signature_def_utils.build_signature_def(
+  sess = tf.Session(graph=g)
+  restore_model(sess)
+  encode_ids=g.get_tensor_by_name('encode_ids:0')
+  encode_mask=g.get_tensor_by_name('encode_mask:0')
+  enc=g.get_tensor_by_name('encoder/thought_vectors:0')
+  enc_out=g.get_tensor_by_name('encoder_out/thought_vectors:0')
+  input_encode_ids=tf.saved_model.utils.build_tensor_info(encode_ids)
+  input_encode_mask=tf.saved_model.utils.build_tensor_info(encode_mask)
+  output_enc=tf.saved_model.utils.build_tensor_info(enc)
+  output_enc_out=tf.saved_model.utils.build_tensor_info(enc_out)
+  signature_definition = tf.saved_model.signature_def_utils.build_signature_def(
     inputs={'input_encode_ids': input_encode_ids, 'input_encode_mask': input_encode_mask},
     outputs={'output_enc': output_enc, 'output_enc_out' : output_enc_out},
     method_name= tf.saved_model.signature_constants.PREDICT_METHOD_NAME)
-
-MODEL_NAME = 'model'
-SUB_NAME='comment07'
-VERSION = 1
-SERVE_PATH = '/data1/comment_model/serve/{}_{}/{}'.format(SUB_NAME, MODEL_NAME, VERSION)
-
-builder=tf.saved_model.builder.SavedModelBuilder(SERVE_PATH)
-
-builder.add_meta_graph_and_variables(
+  builder=tf.saved_model.builder.SavedModelBuilder(SERVE_PATH)
+  builder.add_meta_graph_and_variables(
     sess, [tf.saved_model.tag_constants.SERVING],
     signature_def_map={
         tf.saved_model.signature_constants.DEFAULT_SERVING_SIGNATURE_DEF_KEY : signature_definition
     })
-builder.save()
+  builder.save()
+  for i in tf.get_default_graph().get_operations():
+    print(i)
 
 ```
