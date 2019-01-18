@@ -48,7 +48,7 @@ builder.save()
 ```python
 g = tf.Graph()
 with g.as_default():
-  encoder = s2v_encoder.s2v_encoder(model_config)
+  encoder = s2v_encoder.s2v_encoder(model_config)#encoder 파일에서 가져오면서 tensor 변형 있어서 이렇게 한것임 / 사실 그냥 checkpoint 파일에서 그냥 읽어오면 됨
   restore_model = encoder.build_graph_from_config(model_config)
   sess = tf.Session(graph=g)
   restore_model(sess)
