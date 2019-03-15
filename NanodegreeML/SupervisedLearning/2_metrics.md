@@ -1,14 +1,43 @@
 ## 분류 모델에 쓸 수 있는 metric
+* confusion matrix
+	* true positive, true negative, false positive, false negative
+* accuracy
+	* (true positive+ true nagative)/(전체 데이터(positive + negative))
+* error rate
+	* (false positive + false negative)/전체 데이터(positive + negative)
+* recall
+	* 진짜로 맞는것중에서 진짜 맞다고 한 비율
+	* =sensitivitiy, true positive rate
+	* (true positive)/(true positive + false negative)
+* precision
+	* 맞다고 한것중에서 진짜 맞는것의 비율
+	* (true positive)/(true positive+false positive)
+* specificity
+	* negative 로 판단한 중 실제 false 인 비율
+	* =true negative rate
+	* (true negative)/(true negative + false positive)
+* false positive rate
+	* positive 인데 잘못해서 negative 로 판단
+	* (false positive)/(false negative + true negative)
 * F1 score
 	* `2*(precision*recall)/(precision+recall)`
 	* Precision 과 recall 을 한번에 나타내기 위해서
 		* 두 수의 조화평균을 사용
 		* 두 수보다 항상 작게 나온다
 * F-beta score
-	* (1+b^2)*(precision*recall)/(b^2 * (precision +recall))
-	* Precision 이 중요하면 beta 를 작게, recall 이 중요하면 beta 를 크게 설정
-	
+	* precision 과 recall 의 조화 평균
+	* `(1+b^2)*(precision*recall)/((b^2 * precision) +recall))`
+	* Precision 이 중요하면 beta 를 작게(0.5), recall 이 중요하면 beta 를 크게(2) 설정
+* 참고
+	* (산술, 기하, 조화 평균)
+		* 산술 -> 그냥 평균
+		* 기하 -> 연평균 증가율
+		* 조화 -> 평균 속력
+	* type 1 error = false negative / type 2 error = false positive
+
+
 * ROC curve (Receiver operating characteristic)
+	* 가로축을 false positive rate의 비율로 하고, 세로축을 true positive rate 로 해서 시각화
 	* 1차원 공간에서 두 종류의 점을 가르는 지점으로 Split 
 	* 가능한 모든 split 을 생각해서 이 각각의 true positive , false positive rate 을 구함
 	* 그리고 이를 plane 에 plot 함
