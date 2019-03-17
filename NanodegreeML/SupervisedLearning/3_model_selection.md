@@ -10,7 +10,9 @@
 
 * k-fold cross validation
 	* data 재활용
-	* 동일한 데이터 안에서 training set 과 validation set 을 shuffle 해서 여러개를 만들어
+	* 데이터를 k 개로 분할
+	* 분할 데이터 k-1 개로 training / 나머지 1개로 validation
+	* 이 과정을 k 번 반복한 후 결과값을 평균내서 사용
 	* ![K_fold_cross_validation](images/3_2.png "K_fold_cross_validation")
 	* Kfold(12,3,shuffle=True)
 
