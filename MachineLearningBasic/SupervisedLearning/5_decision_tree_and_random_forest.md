@@ -46,3 +46,7 @@
 * 참고
 https://datascienceschool.net/view-notebook/16c28c8c192147bfb3d4059474209e0a/
 https://medium.com/@deepvalidation/title-3b0e263605de
+
+
+
+https://operatingsystems.tistory.com/entry/Data-Mining-Decision-Tree?category=624326
