@@ -25,5 +25,3 @@
 	4. decorrelate w
 	5. repeat from step #3 until converged
 	![factica](image/8_5.png "factica")
-
-	* 
