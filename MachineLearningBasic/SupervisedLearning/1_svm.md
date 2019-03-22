@@ -1,7 +1,4 @@
-	• Perceptron algorithm
-		○ Error function - 잘못 분류된 element 들의 거리를 다 합해
-		○ Best possible cut 찾기 위해서 w, b를 gradient descent 로 찾아나가는 것
-	
+
 	• Classification error --> svm 의 error function 은 조금 더 까다로워
 		○ Margin line 을 더 그려(wx+b=1 , wx+b=-1)
 		○ 이 거리를 같이 둔 상태로 error function 을 적용해(error 가 전보다 더 커지겠지)
