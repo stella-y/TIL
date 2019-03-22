@@ -15,10 +15,15 @@
 ### pca
 * 여러 변수가 있는 데이터 차원에서 가장 주요한 성분을 순서대로 추출하는 기법
 * 여러 변수의 값을 합쳐서 그보다 적은 수의 주요 성분을 새로운 변수로 하여 데이터를 표현
-
-
+* 주성분 --> 그 방향으로 데이터들의 분산이 가장 큰 방향 벡터
+* pca : 입력 데이터들의 공분산 행렬에 대한 고유값 분해
+	* 이 때 나오는 고유벡터가 주성분 벡터
+	* 고유벡터가 주성분 벡터 - 데이터의 분포에서 분산이 가장 큰 방향
+	* 고유값 - 그 분산의 크기
+![pca](image/6_1.png "pca")
 * 참고
 https://wikidocs.net/7646
 https://bcho.tistory.com/1209
 http://mllab.sogang.ac.kr/index.php?mid=research_subj_fs
 https://kkokkilkon.tistory.com/127
+https://darkpgmr.tistory.com/110
