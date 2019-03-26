@@ -127,15 +127,71 @@ for (file <-filesHear if file.getName.endsWith(".scala")){
 ```
 * for 표현식의 본문을 수행할때마다 값(위 코드에선 file)을 하나씩 만들어 냄
 * 위 코드에서 전체 결과는 Array[File]
-* 
+
+### 7.4 Try 표현식 다루기
+
+#### 예외 발생시키기
+* 방법은 자바와 같음
+```scala
+throw new IllegalArgumentException //
+```
+* throw --> 스칼라에선 얘도 결과값이 있음 : Nothing type
+	* 예외 발생시 결과값을 돌려주기도 전에 제어 흐름이 호출한 쪽으로 넘어감(결과값을 실제로 써먹는 경우는 없는 것)
+	* if 문의 코드 분기는 모두 표현식이어야 하므로, throw 만 특별취급하면 문법구조나 컴파일러 처리가 복잡할 것이기때문
+
+#### 발생한 예외 잡기
+```scala
+import java.io.FileReader
+import java.io.FileNotFoundException
+import java.io.IOException
+
+try {
+	val f = new FileReader("input.txt")
+} catch{
+	case ex: FileNotFoundException => //파일을 못 찾는 경우 처리
+	case ex: IOException => // 그 밖의 IO 오류 처리
+}
+```
+* 패턴 매치와 일관성 위해서 위와 같은 형식 차용한 것 --> 15장에 더 있다고함
+
+#### finally 절
+* 표현식의 결과가 어떻든 특정 코드를 반드시 수행하고 싶을 때(java 랑 같음)
+```scala
+import java.io.FileReader
+
+val file=new FileReader("input.txt")
+try {
+	//파일을 사용한다
+} finally{
+	file.close()//파일을 닫는다
+}
+```
+
+#### 값 만들어내기
+```scala
+import java.net.URL
+import java.net.MalformedURLException
+
+def urlFor(path: String)=
+	try {
+		new URL(path)
+	} catch {
+		case e: MapformedURLException =>
+			new URL("http://www.scala-lang.org")
+	}
+```
+* try-catch-finally 도 값을 return
+* 위의 예시에서
+	* 예외가 발생하지 않으면 전체 결과는 try 절의 수행 결과
+	* 예외 발생했는데 처리 못하면 표현식의 결과는 전혀 없음
+		* finally 절에 결과값이 있대도 버려짐
+* java 와 비교
+	* java : finally 안에서 명시적으로 return 을 사용하거나, 예외 발생시키면 try 블록이나 catch 절에서 발생한 원래의 결과물을 덮어씀
+	* 
+```scala
 
 
-
-
-
-
-
-
+```
 
 
 
