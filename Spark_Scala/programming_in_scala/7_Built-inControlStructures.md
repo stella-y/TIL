@@ -187,16 +187,94 @@ def urlFor(path: String)=
 		* finally 절에 결과값이 있대도 버려짐
 * java 와 비교
 	* java : finally 안에서 명시적으로 return 을 사용하거나, 예외 발생시키면 try 블록이나 catch 절에서 발생한 원래의 결과물을 덮어씀
-	* 
+* **finally 에서는 값을 반환하지 않는게 최선이다!!**
+* 파일을 닫거나 정리하는 작업 등의 부수 효과에 사용
 ```scala
-
-
+def f(): Int = try return 1 finally return 2 // 결과 =2
+def g(): Int = try 1 finally 2 //결과 = 1
 ```
 
 
+### 7.5 Match 표현식
+* switch 와 유사
+```scala
+val firstArg=if (args.length > 0) args(0) else ""
+val friend=
+	firstArg match {
+		case "salt" => "pepper"
+		case "chips" => "salsa"
+		case "eggs" => "bacon"
+		case _ => "huh?" // _ : default (스칼라에서는 완전히 알려지지 않은값 표시를 위한 위치 표시자(placeholder)로 종종 이용함)
+	}
+```
+* Java 의 switch 와의 차이
+	* case 문에서의 대상이 다름
+		* java 에서는 case 문에 enum, 정수 타입의 값, 문자열 만 쓸수 있음
+		* scala 에서는 어떤 종류의 상수도 사용 가능
+	* break 문이 없음
+		* case 문 마다 break 가 암묵적으로 있어서 break 가 없어도 다음으로 넘어가지 않음
+	* match 엔 결과값이 있음
+		* 위의 코드에선 match의 결과가 firstArg 의 값으로 저장될 것
+
+### 7.6 break 와 continue 문 없이 살기
+* scala 에선 break 와 continue 가 없다!(함수리터럴과 어울리지 않는단다...)
+* continue 문을 if 로 break 문을 boolean 변수로 대체하면 된다
+```java
+int i=0;
+boolean foundIt=false;
+while(i < args.length){
+	if (args[i].startsWith("-")){
+		i = i + 1;
+		continue;
+	}
+	if (args[i].endsWith(".scala")){
+		foundIt = true;
+		break;
+	}
+	i = i + 1;
+}
+```
+* java code 를 scala code 로 변형(break, continue 제거)
+```scala
+var i = 0
+var foundIt = false
+while( i < args.length && !foundIt){
+	if (!args(i).startsWith("-")){
+		if (args(i).endsWith(".scala"))
+			foundIt = true
+	}
+	i = i + 1
+}
+```
+* var 대신 var 사용 위해 재귀로 변환
+```scala
+def searchFrom(i: Int): Int =
+	if (i >= args.length) -1
+	else if (args(i).startsWith("-")) searchFrom(i + 1)
+	else if (args(i).endsWith(".scala")) i
+	else searchFrom(i + 1)
+val i = searchFrom(0)
+```
+* 굳이 break 를 쓰고 싶다면 스칼라 표준 라이브러리에 있음
+```scala
+import scala.util.control.Breaks._
+import java.io._
+
+val in = new BufferedReader(new InputStreamReader(System.in))
+
+breakable {
+	while (true) {
+		println("? ")
+		if (in.readLine() == "") break
+	}
+}
+```
+
+### 7.7 변수 스코프
+* java 에서와 동일하다
 
 
-
+### 7.8 명령형 스타일 코드 리팩토링
 
 
 
