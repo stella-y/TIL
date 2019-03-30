@@ -18,8 +18,23 @@
 (h(x)=cx 를 활성화함수로 사용한 3층 네트워크 <==> y(x)=h(h(h(x)))
 실은 y(x)=ax와 똑같은 식 인거라 a=c3이라고만 하면 끝)
 
+## classification 에서
+* sigmoid function
+	* 하나의 직선을 기준으로 class 를 두가지로 나눈다고 했을때에 어느쪽 class 에 속하게 되는지는 discrete 하게 나타나게 됨
+	* 이를 연속적인 function 으로 표현 한다면 sigmoid 가 될 것 (시그마(x)=1/(1+exp(-x))
+	![sigmoid](images/1_1.png "sigmoid")
+* softmax classifier
+	* svm 과 더불어 많이 쓰이는 classifier
+	* logistic regression classifier 의 multiple class 에 대한 일반화 개념
+	* 각 class 의 score 를 받아서 normalized class probability 리턴
+	![softmax](images/1_2.png "softmax")
+
+
+
 
 
 
 http://aikorea.org/cs231n/optimization-2/
 https://ratsgo.github.io/deep%20learning/2017/04/22/NNtricks/
+https://ratsgo.github.io/deep%20learning/2017/09/24/loss/
+http://blog.naver.com/PostView.nhn?blogId=gyrbsdl18&logNo=221013188633

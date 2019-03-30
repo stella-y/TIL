@@ -19,11 +19,22 @@
 * pca : 입력 데이터들의 공분산 행렬에 대한 고유값 분해
 	* 이 때 나오는 고유벡터가 주성분 벡터
 	* 고유벡터가 주성분 벡터 - 데이터의 분포에서 분산이 가장 큰 방향
+	* 데이터의 분산을 최대한 보존하면서 소로 직교하는 축을 찾아 고차원의 표본들을 연관성 없는 저차원 공간으로 변환하는 것
 	* 고유값 - 그 분산의 크기
 ![pca](image/6_1.png "pca")
+
+
+### t-SNE
+* pca 에서 차원을 줄인 후, 변별력이 없어지는 군집이 생겨버리는 문제의 해결하려 개발
+* 
+
+### matrix factorization
+* 
+
 * 참고
 https://wikidocs.net/7646
 https://bcho.tistory.com/1209
 http://mllab.sogang.ac.kr/index.php?mid=research_subj_fs
 https://kkokkilkon.tistory.com/127
 https://darkpgmr.tistory.com/110
+https://ratsgo.github.io/machine%20learning/2017/04/28/tSNE/
