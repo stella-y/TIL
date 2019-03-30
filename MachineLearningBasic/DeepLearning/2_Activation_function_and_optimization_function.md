@@ -31,10 +31,6 @@
 4. parametric alpha - 이마저 학습하는 것
 
 
-
-
-
-
 ### optimization function
 1. sgd - gradient 가 0이 되는 구간에서 멈출 것(왔다갔다가 심해져)
 2. sgd+momentum - rho (관행적으로 0.1)
