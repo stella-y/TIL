@@ -24,10 +24,10 @@
 * 현재 택한 mini-batch 안에서만 mean, variance 를 구해서, 이 값을 이용해 normalize 한다
 
 ## Algorithm
-* 	• 각 feature 별로 평균, 표준편차 구한 다음 normalize
-	• Scale factor 와 shift factor 이용해 새 값 만들어줌
+* 각 feature 별로 평균, 표준편차 구한 다음 normalize
+* Scale factor 와 shift factor 이용해 새 값 만들어줌
 	![algorithm](image/batchnormalization1.png "algorithm")
-	• 실제 적용시킬때는 hidden layer 에 들어가기 전에 batch normalization layer 를 더해주어 input 을 modify 해준 뒤 새 값을 activation function 으로 넣는다
+* 실제 적용시킬때는 hidden layer 에 들어가기 전에 batch normalization layer 를 더해주어 input 을 modify 해준 뒤 새 값을 activation function 으로 넣는다
 ![algorithm](image/batchnormalization2.png "algorithm")
 * Test 할 때
 	* Mini-batch 의 값 이용하는 대신 training 할 때 봤던 input 들의 moving average / unbiased variance estimate 의 moving average 이걸 계산해서 저장해놓고 이 값으로 normalize
