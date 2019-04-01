@@ -34,11 +34,11 @@ Learning rate 에 따른 line parameter 변형 - 차이가 크다면 많이 움�
 			* 관련이 없는 weight 에 대해서는 0으로 만들어버리는 경향이 커서 feature selection 에 효과가 좋음
 			* 대신 data 가 non-sparse 인 경우 계산이 비효율적일 수 있음
 			* cost function
-				![l1](images/4_4.png "l1")
+				![l1](images/4_4.PNG "l1")
 		* L2 regularization
 			* Error 에 squares of coefficients 를 더해
 			* cost function
-				![l2](images/4_5.png "l2")
+				![l2](images/4_5.PNG "l2")
 		* 어떨때 l1을, l2 를 쓰는가
 			* 수식 보면 l1 은 w 값에서 상수값을 빼주게 되어, 작은 가중치들은 0으로 수렴할 수 있게 됨
 			--> 몇개의 중요한 가중치만 남음
@@ -49,7 +49,19 @@ Learning rate 에 따른 line parameter 변형 - 차이가 크다면 많이 움�
 		![regularization](images/4_3.png "regularization")
 
 			
-				
-			
+* norm
+	* 벡터 길이 혹은 크기 측정하는 방법
+	* 원점에서 벡터 좌표까지의 거리
+	![norm](images/4_6.PNG "norm")
+		* p : norm 의 차수
+		* n : 벡터 요소수
+	* l1 norm
+		* (=taxicab norm = manhattan norm)
+		* 절대값의 합
+		![norm](images/4_7.PNG "norm")
+	* l2 norm			
+		* (=Euclidean norm)
+		![norm](images/4_8.PNG "norm")
+
 				
 				
