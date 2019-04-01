@@ -18,3 +18,6 @@
 * 여러 parameter 에서 데이터가 주어졌을 때 가장 확률이 높은 theta 를 구하는 것
 θ^=argmaxθf(θ|X)=argmaxθf(X|θ)f(θ)f(X)=argmaxθL(θ;X)f(θ)f(X)
 (by bayes' theorem)
+
+
+참고 : http://rstudio-pubs-static.s3.amazonaws.com/204928_c2d6c62565b74a4987e935f756badfba.html
