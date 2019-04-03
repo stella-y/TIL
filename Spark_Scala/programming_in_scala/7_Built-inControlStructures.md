@@ -81,7 +81,7 @@ for (
 ```scala
 def fileLines(file: java.io.File)=scala.io.Source.fromFile(file).getLines().toList
 
-def grep(patter: String)=
+def grep(pattern: String)=
 	for (
 		file <- filesHere //generator
 		if file.getName.endsWith(".scala"); //filter
@@ -114,11 +114,14 @@ grep(".*gcd.*")
 	* 결과값이라 꼭 마지막에 와야할 것 같은 느낌이 들지만 아니란걸 유의할 것
 	* for 의 본문의 iteration 마다 만들어내는 결과값을 모은단 걸 기억할 것
 ```scala
+val filesHere=(new java.io.File(".").listFiles)
+
 def scalaFiles=
 	for{
 		file <- filesHere
 		if file.getName.endsWith(".scala")
 	} yield file
+
 //아래는 틀린 표현
 for (file <-filesHear if file.getName.endsWith(".scala")){
 	yield file
@@ -214,7 +217,7 @@ val friend=
 	* break 문이 없음
 		* case 문 마다 break 가 암묵적으로 있어서 break 가 없어도 다음으로 넘어가지 않음
 	* match 엔 결과값이 있음
-		* 위의 코드에선 match의 결과가 firstArg 의 값으로 저장될 것
+		* 위의 코드에선 match의 결과가 friend 의 값으로 저장될 것
 
 ### 7.6 break 와 continue 문 없이 살기
 * scala 에선 break 와 continue 가 없다!(함수리터럴과 어울리지 않는단다...)
@@ -246,7 +249,7 @@ while( i < args.length && !foundIt){
 	i = i + 1
 }
 ```
-* var 대신 var 사용 위해 재귀로 변환
+* var 대신 val 사용 위해 재귀로 변환
 ```scala
 def searchFrom(i: Int): Int =
 	if (i >= args.length) -1
