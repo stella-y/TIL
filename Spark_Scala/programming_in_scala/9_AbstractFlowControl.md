@@ -1,0 +1,96 @@
+## 9.흐름 제어 추상화
+### 1. 코드 중복 줄이기
+* 함수를 파라미터로 넘겨서 호출하게 만들 수 있음
+```scala
+// 중복제거 안한 것
+object FileMatcherBefore {                                         // 중복 제거 전 객체
+    private def filesHere = (new Java.io.File(".")).listFiles      // 파일 리스트 가져옴
+ 
+    def filesEnding(query: String) = {                             // 파일명이 query로 끝나는 파일들만 리턴 (여기서는 지연 리턴)
+        for (file <- filesHere; if file.getName.endsWith(query))
+            yield file
+    }
+ 
+    def filesContaining(query: String) = {                         // 파일명에 query가 들어가는 파일들만 리턴 (여기서는 지연 리턴)
+        for (file <- filesHere; if file.getName.contains(query))
+            yield file
+    }
+ 
+    def filesRegex(query: String) = {                              // 파일명에 regular expression query와 매칭되는 파일들만 리턴 (여기서는 지연 리턴)
+        for (file <- filesHere; if file.getName.matches(query))
+            yield file
+    }
+}
+
+// 중복제거 한 것
+object FileMatcherAfter {                                          // 중복 제거 후 객체
+    private def filesHere = (new Java.io.File(".")).listFiles      // 파일 리스트 가져옴
+ 
+    def filesMatching(matcher: String => Boolean) = {                         // 파일명이 matcher에 합당하는 파일들만 리턴
+        for (file <- filesHere; if matcher(file.getName))
+            yield file
+    }
+
+    def filesEnding(query: String) = filesMatching(_.endsWith(query))           // 파일의 끝이 query인지 체크하는 클로저 리턴 (클로저의 입력은 파일 이름)
+    def filesContaining(query: String) = filesMatching(_.contains(query))       // 파일에 query가 들어가있는지 체크하는 클로저 리턴
+    def filesRegex(query: String) = filesMatching(_.matches(query))             // 파일이름이 query regular expression 에 매칭되는지 체크하는 클로저 리턴
+}
+```
+	* FileMatcherBefore 부분에서 일일이 함수를 다 새로 씀
+	* FileMatcherAfter 의 filesMatching 함수를 파라미터로 받을 수 있는 형태로 선언해 둠(matcher라는 변수명으로)
+	* FileMatcherAfter 의 filesEnding, filesContaining, filesRegex 의 함수를 선언할때 filesMatching 을 이용하게 됨
+		* filesMatching(\_.endsWith(query)) 는 file 이름이 query 로 끝나는지 체크하는 클로저를 리턴함
+			* filesMatching 에서 인자가 뭐가 들어갈지 모른다는 의미로 \_ 를 씀(\_.endsWith 등)
+
+### 2. 코드 단순화
+```scala
+// 코드 단순화 전
+def containsNeg(nums: List[Int]):Boolean = {                          // nums 리스트 내부에 음수가 존재하는지 체크
+    var exists = false
+    for (num <- nums)
+        if (num < 0)
+            exists = true
+    exists
+}
+ 
+def containsOdd(nums: List[Int]): Boolean = {                         // nums 리스트 내부에 홀수가 존재하는지 체크
+    var exists = false
+    for (num <- nums)
+        if (num % 2 == 1)
+            exists = true
+    exists
+}
+
+// 코드 단순화 후
+def containsNegSimple(nums: List[Int]):Boolean = nums.exists(_ < 0)        // containsNeg와 동일한 함수
+def containsOddSimple(nums: List[Int]):Boolean = nums.exists(_ % 2 == 1)   // containsOdd와 동일한 함수
+```
+	* scala 의 List 에 있는 exists 함수는 함수 파라미터를 받을 수 있게 설계 돼 있음
+	* exists 호출할 때에 인자로 (\_ < 0), (\_ % 2 == 1) 등의 함수를 받을 수 있는 것
+
+### 3. 커링(Curring)
+* 인자 목록을 여러개 가지고 있게 선언
+* 인자 목록 개수만큼 중첩된 함수가 존재하고, 인자를 모두 입력하여 호출시 이를 모두 호출하는 형태
+* 따라서 일부 인자만 채워주면 나머지 인자를 채울 수 있는 함수가 리턴
+```scala
+def plainOldSum(x: Int, y: Int) = x + y        // 일반적인 형태의 덧셈 함수
+val res1 = plandOldSum(1, 2)
+ 
+def curriedSum(x: Int)(y: Int) = x + y         // 커링을 사용한 덧셈 함수
+val res2 = curriedSum(1)(2)
+ 
+def first(x: Int) = (y: Int) => x + y          // 클로저를 사용한 덧셈 함수
+val second = first(1)
+val res3 = second(2)
+ 
+val onePlus = curriedSum(1) _                  // 커링을 사용하면 클로저를 사용해서 동작하는 것과 동일하게 사용할 수 있음
+val res4 = onePlus(2)                          // 실제 내부적으로는 클로저를 사용하는 동작과 동일한 바이트코드가 생성됨
+```
+	* curring 으로 선언된 함수의 경우 인자를 다 넣고 호출하지 않을 경우 값을 리턴하지 않고, 나머지 인자를 후에 받을 수 있는 함수 형태를 리턴하게 됨
+
+
+
+
+
+
+
