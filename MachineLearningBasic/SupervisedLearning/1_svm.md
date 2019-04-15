@@ -1,11 +1,35 @@
+## svm
+* 장 : 분류 기법중 최상으로 불림
+* 단 : 직관적 해석이 불가능함
 
-	• Classification error --> svm 의 error function 은 조금 더 까다로워
-		○ Margin line 을 더 그려(wx+b=1 , wx+b=-1)
-		○ 이 거리를 같이 둔 상태로 error function 을 적용해(error 가 전보다 더 커지겠지)
-	• Margin error
-		○ 마진을 error 로 만들고 싶어(gradient descent 로 minimize 하고싶거든) --> 이런 error function 을 만들거야
-			§ Error function : 우리는 large margin 에 대해서 적은 에러를 내고, small margin 에 대해서 많은 에러를 내는 함수를 찾을거야
-			§ 왜냐면 되도록이면 큰 마진을 만들어내는게 안정적인 classification function 을 찾는거니까
-		○ Margin = 2/|w|
-		○ --> error=|w|^2(w는 vecrtor니까 --> w1^2+w2^2
-		○ --> 마진이 크면 에러는 작아지고, 마진이 작으면 에러는 커져
+### 최대 마진 분류기(Maximal Margin Classifier)
+	* 훈련 관측치에서 주어진 초평면까지의 수직거리를 계산하고, 이 값에 따라 최적의 초평면 선택
+	* 이 최적의 초평면 선택의 기준이 분리 초평면에서 마진이 가장 큰 것
+	* 초 평면에 가장 가까운 분류 기점의 벡터 --> support vector
+![sv](images/1_1.png "sv")
+
+### support vector classifier
+* 최대 마진 분류기의 확장
+* soft margin 허용
+* parameter 로 오류 허용의 정도를 결정함
+	* soft cost 가 큰 값을 가지면 margin 의 폭은 작아지고, cost 가 작은값을 가지면 큰 마진을 가지게 됨
+
+### support vector machine
+* support vector classifier 가 비선형 커널과 결합 / 이때 얻어지는 분류기가 support vector machine
+	* 커널 사용해서 변수공간 확장
+	* 커널 차원을 높여서 다양한 결정경계 만든다.
+
+svm 에서의 cost function
+* Classification error
+	* Margin line 을 더 그린다(wx+b=1 , wx+b=-1)
+		* 이 거리를 같이 둔 상태로 error function 을 적용함
+* Margin error
+	* 마진을 error 로 만들고 싶은 것
+		* --> (gradient descent 로 minimize 가능해짐)
+	* Error function : large margin 에 대해서 적은 에러를 내고, small margin 에 대해서 많은 에러를 내는 함수를 찾아야 함
+		* (되도록이면 큰 마진을 만들어내는게 안정적인 classification function 을 찾는것 이므로)
+	* Margin = 2/|w|
+	*  --> error=|w|^2(w는 vecrtor니까 --> w1^2+w2^2
+	* --> 마진이 크면 에러는 작아지고, 마진이 작으면 에러는 작아진다
+
+참고 : https://m.blog.naver.com/PostView.nhn?blogId=tjdudwo93&logNo=221051481147&proxyReferer=https%3A%2F%2Fwww.google.com%2F
