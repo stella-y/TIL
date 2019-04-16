@@ -3,9 +3,9 @@
 * 단 : 직관적 해석이 불가능함
 
 ### 최대 마진 분류기(Maximal Margin Classifier)
-	* 훈련 관측치에서 주어진 초평면까지의 수직거리를 계산하고, 이 값에 따라 최적의 초평면 선택
-	* 이 최적의 초평면 선택의 기준이 분리 초평면에서 마진이 가장 큰 것
-	* 초 평면에 가장 가까운 분류 기점의 벡터 --> support vector
+* 훈련 관측치에서 주어진 초평면까지의 수직거리를 계산하고, 이 값에 따라 최적의 초평면 선택
+* 이 최적의 초평면 선택의 기준이 분리 초평면에서 마진이 가장 큰 것
+* 초 평면에 가장 가까운 분류 기점의 벡터 --> support vector
 ![sv](images/1_1.png "sv")
 
 ### support vector classifier
@@ -18,6 +18,16 @@
 * support vector classifier 가 비선형 커널과 결합 / 이때 얻어지는 분류기가 support vector machine
 	* 커널 사용해서 변수공간 확장
 	* 커널 차원을 높여서 다양한 결정경계 만든다.
+* 주요 파라미터 두개(Cost / Gamma)
+	* cost : svm 모델에 얼만큼 오차를 허용할 것인지를 나타냄
+		* cost 값이 작으면 --> margin 폭 넓으짐
+	* gamma : (hyperplane 이 아닌 kernel과 관련(radial 등)) 가우시안 함수의 표준편차를 조정
+		* gamma 값 커지면 --> 작은 표준편차 가짐
+* kernel
+	* support vector classifier 는 suppert vector machine 의 1항과 같음
+		* kernel 인자에 linear / cost 값으로 soft margin 설정
+	* kernel 인자에 polynomial 입력, degree 로 차수 조절
+	* kernel 인자에 radial 입력 - 방사형 커널 수행 / gamma 와 cost 조절
 
 svm 에서의 cost function
 * Classification error
