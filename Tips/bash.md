@@ -89,7 +89,7 @@ cat /proc/meminfo | grep MemTotal
 ```bash
 df -h
 ```
-
+* 참고 : https://m.blog.naver.com/PostView.nhn?blogId=skemfl57&logNo=220656881773&proxyReferer=https%3A%2F%2Fwww.google.com%2F
 
 
 
