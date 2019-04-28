@@ -80,3 +80,7 @@ https://arxiv.org/pdf/1512.02325.pdf
 * One key feature is multiple convolutional maps to deal with different scale
 * More default bounding boxes, the better result obtained
 * Comparable accuracy to state-of-the-art object detectors(fast-rcnn & YOLO) but much faster
+
+
+* 코드 분석
+https://www.notion.so/Object-Detection-9c3d52a77913435d979af1dfaac98c0d
