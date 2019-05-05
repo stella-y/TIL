@@ -12,6 +12,16 @@
 		* 모든 변수들을 잘 조합해서 데이터를 잘 표현할 수 있게 하는 새로운 변수를 만들어냄
 		* e.g. pca
 
+
+### SVD
+* A[m*n]=U[m*r]sigma[r*r]transpose(V[n*r])
+	* A : Input data matrix (e.g. m documents, n terms)
+	* U : Left singular vectors (m documents, r concepts)
+	* sigma : singular values
+		- r*r diagonal matrix(strength of each 'concept')
+		- r: rank of the matrix A
+	* V : Right singular vectors (n terms, r concepts)
+
 ### pca
 * 여러 변수가 있는 데이터 차원에서 가장 주요한 성분을 순서대로 추출하는 기법
 * 여러 변수의 값을 합쳐서 그보다 적은 수의 주요 성분을 새로운 변수로 하여 데이터를 표현
