@@ -62,5 +62,22 @@
 		* combiner 는 reduce function 과 동일하게 작용
 		* (단 이건 reduce function 이 commutative and associtive 할때만(통신을 야기하거나, 앞뒤로 연관성이 있거나))
 		* 훨씬 적은 양의 데이터가 복사, shuffle 된다.
+* Cost measure for algorithms
+	- (table R(with column A and B) 과 table S(with column B and C)의 join 연산을 가정했을 때)
+	1. map process
+		- R(a,b)를 (b, (a,R))의 key value pair 로 변환할 것
+		- 마찬가지로 S(b,c)를 (b, (c,S))로 변환
+	2. reduce process
+		- map 에서의 output 들을 match 시킴
+		- (b, (a,R))과 (b, (c, S))의 pair 를 (a,b,c)로 변환
+	* cost measure
+		1. Communication cost : total I/O of all processes
+			* input size of file + 2\*(sum of the sizes of all files passed from map processes to reduce processes) + the sum of the outputsizes of the reduce processes
+			* O(|R|+|S|+|R join S|)
+		2. Elapsed communication cost: max of I/O along any path
+			* sum of the largest input + output for amy map process + (the same for reduce processes)
+			* O(s) - 여기서의 s 는 input, output 의 최대값(limit)
+				- s - what fits in main memory / what fits on local disk
+		3. (Elapsed) computation cost : running time of processes
 
 
