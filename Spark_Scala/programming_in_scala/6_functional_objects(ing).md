@@ -8,7 +8,11 @@ class Rational(n:Int, d:Int) {          // class 내부에 있지만 필드나 �
     println("Created " + n + "/" + d)
 }
 ```
-* override
+* toString method override
+	* java.lang.Object 클래스의 toString
+		* 클래스 이름, @표시, 16진수 숫자 출력함
+		* 디버그 출력문, 로그 메시지, 테스트 실패보고, 인터프리터 디버거 출력시 정보 제공해서 도움을 주기 위한 것
+		* 디폴트 값 자체는 별로 도움이 안돼서, override 해서 값을 변환해주면 더 좋음
 ```scala
 class Rational(n:Int, d:Int){
 	override def toString=n+"/"+d
