@@ -1,4 +1,4 @@
-##12.Trait
+## 12.Trait
 ### overview
 * 스칼라에서 트레이트는 코드 재사용의 근간을 이루는 단위
 	* 트레이트로 메소드, 필드 정의를 캡슐화 하면 트레이트를 조합한 클래스에서 그 메소드나 필드를 재사용할 수 있음
@@ -7,7 +7,7 @@
 	* 트레이트를 써먹는 가장 일반적인 방법 두가지
 		1. thin interface 를 확장해 rich interface 만들기
 		2. 쌓을 수 있는 변경(Stackable modification) 정의
-	* + ordered trait 사용법 + 다른 언어에서의 다중상속과의 차이점
+	* \+ ordered trait 사용법 + 다른 언어에서의 다중상속과의 차이점
 
 ### 12.1 Trait 동작 원리
 1. trait 키워드를 사용하는점을 제외하면 클래스의 정의와 같음
@@ -34,13 +34,14 @@ frog: Frog=green
 I consume memory, therefore I am!
 ```
 4. trait 도 type 을 정의함
+	* phil 변수의 타입은 Philosophical 트레이트 --> phil 변수를 Philosophical trait 를 mix in 한 어떤 객체로도 초기화시킬 수 있음
 ```sh
 > val phil: Philosophical = frog
 phil: Philosophical =green
 > phil.philosophize()
 I consume memory, therefore I am!
 ```
-	* phil 변수의 타입은 Philosophical 트레이트 --> phil 변수를 Philosophical trait 를 mix in 한 어떤 객체로도 초기화시킬 수 있음
+
 5. with 을 활용해서 여러 trait 를 mix in 하는게 가능하다
 ```scala
 class Animal
@@ -53,7 +54,7 @@ class Frog extends Animal with Philosophical with HasLegs{
 ```scala
 class Animal
 class Frog extends Animal with Philosophical{
-	override def toString="gree"
+	override def toString="green"
 	override def philosophize() = {
 		println("It ain't easy being "+toString+"!")
 	}
@@ -202,6 +203,7 @@ val q = new BasicIntQueue with Incrementing with Doubling
 q.put(42)
 ```
 * 위 코드를 상속이라고 상상한다면 q.put(42)에서 42를 두배한 후 put 하고 끝날 것(trait 처럼 incrementing 하지 못함)
+	* 이 때에 각 코드는 super class 의 put 을 따로 호출하지, 1증가시기키고 두배하는 형태로 동작하지 않음
 ``` scala
 trait MyQueue extends BasicIntQueue with Incrementing with Doubling {
 	def put(x: Int) = {
@@ -210,7 +212,7 @@ trait MyQueue extends BasicIntQueue with Incrementing with Doubling {
 	}
 }
 ```
-	* 이 때에 각 코드는 super class 의 put 을 따로 호출하지, 1증가시기키고 두배하는 형태로 동작하지 않음
+
 * trait 는 선형화로 이 문제를 해결하고 있음
 	* 클래스를 instance 화 할때, 클래스 자기자신, 조상클래스, 믹스인 트레이트를 한줄로 세워서 순서를 정함(맨앞이 자기자신)
 	* super 를 여기서 호출하면 해당 순서에서 한단계 다음에 있는 method 가 호출되는 것
