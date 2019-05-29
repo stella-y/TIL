@@ -1,25 +1,53 @@
 ## bert
 transformer model - attention is all youneed 에 최초로 등장
 (attention 만 있으면 rnn, cnn 다 필요 없다 / nlp task 에서는)
-* rnn 단점
-* cnn 단점(attention is all you need 에서 지적)
-	* left-padding for text
+### self attention
+#### 타 방법론과의 비교
+* rnn
+	* 장점
+		* 자연어 등 유동적 길이의 시퀀스 처리에 유리함
+		* vanishing gradient 등의 문제를 gate 로 해결(lstm, grul 등)
+	* 단점
+		* 순차접근으로 병렬성이 부족
+		* 게이트만으론 에러 전파문제 해결이 어려움
+		* 필요없는 정보까지 전부 연산하여 낭비가 심함
+		* 계층적 데이터는 처리가 어려움
+* cnn
+	* 장점
+		* 단계마다 처리할 영역이 고정되어있어서 병렬화에 유리함
+	* 단점(attention is all you need 에서 지적)
+		* 시퀀스 양 끝의 정보를 합치려면 최소 log(n) 만큼의 depth 가 필요하게 됨
+		* left-padding for text
 * attention
-	* seq to seq 에서 encoder 가 만든데에서 어디를 보는게 
-	* representation 단계에서부터 attention 을 사용(self attention)
-	- 자기 자신에게서 어떤게 더 중요한지를 알아보는 layer 인 것
+	* seq to seq 에서 encoder 와 decoder 를 연결하는 핵심 이슈 중 하나
+		* encoder 가 만든데에서 어디를 보는게 맞는가 등 
+	* representation 단계에서부터 attention 을 사용한다면? --> self attention
+		- 자기 자신에게서 어떤게 더 중요한지를 알아보는 layer 인 것
 * self attention
-	* intra attention - 자기 자신에 대해서 다시 attention 을 줌
+	* intra attention 이라고도 부름 - 자기 자신에 대해서 다시 attention 을 줌
 	* 한 시퀀스 내에서 요소가 다른 요소와 가지는 관계 정보와 연관성을 계산하는 것
-	* 연산 양이 많아보이지만 사실상 matrix 곱으로 바로 표현이 가능한 것
+	* 시퀀스 내의 모든 요소 사이의 pair 를 만들어서 attention 계산
+	(연산 양이 많아보이지만 사실상 matrix 곱으로 바로 표현이 가능한 것)
+	* 계산된 attention 값을 기준으로 가중 평균 줘서 해당 위치의 출력값을 계산함
+
 * 왜 self attention
 	* 계산 복잡도가 layer 당 o(1)
 	* sequential operation 이 없어서 병렬화가 용이함
-	* 모든 sequence 가 한 layer 에서 연결이 될 수 이씀(cnn 은 log n 까지 쌓아야만 했지)
+	* 모든 sequence 가 한 layer 에서 연결이 될 수 있음(cnn 은 log n 까지 쌓아야만 했지)
+
+#### 방식
 * three ways of attention
-	* 1방향 attention - 하나의 입력이 얼마나의 영향을 미치냐로 (encoding 단계에서의 layer가 )
+	* 1방향 attention
+		- 하나의 입력이 얼마나의 영향을 미치냐를 표현하게 됨 (encoding 단계에서의 출력이 decoder 단계에서 얼마나 영향을 미치는가)
+		- encoder -> decoder attention
 	* 모든방향
-	* 이전 것만 활용
+		- 모든 요소 사이의 self attention
+		- encoder 에서 이렇게 활용 가능하겠지
+	* 이전의 출력값만 활용
+		- decoder 에서의 attention
+		- maskedDecoder self attention
+
+### Transformer
 * Transformer
 	* masked attention - 이전 출력값만 사용하는 attention(나머지를 mask로 막아준다 라는 의미)
 * seq to seq 모델의 병렬화
