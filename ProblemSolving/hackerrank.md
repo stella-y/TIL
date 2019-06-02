@@ -42,3 +42,26 @@ def isBalanced(s):
     else:
         return "YES"
 ```
+
+## Find the Running Median
+https://www.hackerrank.com/challenges/find-the-running-median/problem
+```python
+import bisect
+def runningMedian(a):
+    #
+    # Write your code here.
+    #
+    sorted_list=[]
+    ans_list=[]
+    for x in a:
+        bisect.insort(sorted_list, x)
+        len_list=len(sorted_list)
+        if len_list%2==1:
+            med_idx=int(len_list/2)
+            ans_list.append(sorted_list[med_idx])
+        else:
+            med_idx=int(len_list/2)
+            ans_list.append((sorted_list[med_idx-1]+sorted_list[med_idx])/2)
+
+    return ans_list
+```
