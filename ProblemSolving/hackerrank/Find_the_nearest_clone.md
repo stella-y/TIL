@@ -94,10 +94,8 @@ def find_path(graph_from, graph_to, x, y):
     while q.qsize() >0:
         curr=q.get()
         visited.append(curr)
-        print(curr)
         #steps+=1
         if curr==y:
-            print("steps "+str(steps))
             return steps
         else:
             steps+=1
@@ -117,8 +115,6 @@ def findShortest(graph_nodes, graph_from, graph_to, ids, val):
             tar_nodes.append(i+1)
     tar_pairs=list(itertools.combinations(tar_nodes, 2))
     min_v=1000000
-    print(tar_nodes)
-    print(tar_pairs)
     for x, y in tar_pairs:
         print(x, y)
         v=find_path(graph_from, graph_to, x, y)
