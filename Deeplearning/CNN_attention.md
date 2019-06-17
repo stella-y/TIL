@@ -20,8 +20,29 @@
 			* encoder 의 layer 를 self attention 으로 쌓은 것
 			* decoder 에서는 일반 attention 으로 쌓은 것
 		* self attention for image
-			* 현재의 위치값을 가지고, 현재 위치의 다음 abstraction 을 위한 representation 을 만들어내겠다
-		* Non-local Neural network(CVPR18)
+			* 현재의 위치값을 가지고, 현재 위치의 다음 abstraction map 에 적합한 representation 을 만들어내겠다
+		* e.g. Non-local Neural network(CVPR18)
+			![non_local](images/cnn_attention_1.png "non_local")
 			* self attention 컨셉을 cnn 에 적용한 것
-			* 
+			* 단, 주변만 보는게 아니라 모든 좌표와 비교한다는 점에서 일반적 cnn 은 아니징(반대개념이라 볼 수도)
+			* hight \* width \* channel
+				* query : HW\*C / key : C\*HW 
+				* HW\*HW 각 좌표간의 상관관계를 담은 matrix
+				* softmax 로 weight 값을 만듦
+				* value - matrix 하나 만들면서, 형태를 그대로 보존
+				* value 를 HW\*C로 reshape
+				* softmax * (HW\*C) 로 나온 결과물을 쓰게 되는 것
+	* Recalibration
+		* Non-local 에서처럼 HW\*HW 는 너무 크지 않나라는 idea 에서
+		* 주변을 얼마나 가져올지가 아니라, 본인의 값을 얼마나 가져가야할지를 주변을 보고 판단하게 되는 것
+			* recalibration: w2\*v2
+			* attention : w1\*v1+w2\*v2+...
+		* attention 의 다른 방향으로의 응용
+		* w2=sigmoid(f(k2, kn))
+		* 곱셈이 없어져서 계산이 확 줄어들 것
+		* e.g. squeeze-and-Excitation network
+			* 채널별로 압축한 후, 어떤 채널이 더 중요한지를 recalibration 하여 활용
+
+
+
 
