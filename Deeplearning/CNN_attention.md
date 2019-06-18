@@ -22,7 +22,7 @@
 		* self attention for image
 			* 현재의 위치값을 가지고, 현재 위치의 다음 abstraction map 에 적합한 representation 을 만들어내겠다
 		* e.g. Non-local Neural network(CVPR18)
-			![non_local](images/cnn_attention_1.png "non_local")
+			![non_local](images/cnn_attention_1.PNG "non_local")
 			* self attention 컨셉을 cnn 에 적용한 것
 			* 단, 주변만 보는게 아니라 모든 좌표와 비교한다는 점에서 일반적 cnn 은 아니징(반대개념이라 볼 수도)
 			* hight \* width \* channel
@@ -42,7 +42,45 @@
 		* 곱셈이 없어져서 계산이 확 줄어들 것
 		* e.g. squeeze-and-Excitation network
 			* 채널별로 압축한 후, 어떤 채널이 더 중요한지를 recalibration 하여 활용
+			* 마지막 이미지넷 챌린지에서 우승한 모델
 
+### cnn network
+![cnnReview](images/cnn_attention_3.PNG "cnnReview")
+* Plain network
+	* vgg net
+* ResNet
+	* skip connection 컨셉 활용
+	* 너무 깊게 쌓으면 gradient flow 가 좋지 않으니, f(f(f...(x))대신 f(x)+x 중첩을 활용함
+	* ResBlock
+		* 기본 블록 정의 후 반복
+		![resnet](images/cnn_attention_4.PNG "resnet")
+	* ResNet Varients
+		* Pre-activation ResNet이때 activation 을 먼저 하는게 더 효과가 좋더라 라는 논문
+		(convolution -> batch norm -> relu 보다 relu -> batch norm -> convolution 이 낫더라) 
+		* wider channel resnet
+			* 실험적으로 채널을 크게 해보니 성능이 좋더라
+	* resnet with cardinality
+		* convolution 대신 grouped convolution 사용
+		* grouped convolution - channel 에서 연산을 다 하지 않고, 그룹지어서 넣음
+		* e.g. xception, shuffle net 등
+	* DenseNet
+		* ResNet 의 block 을 다 연결해버린 것
+* Engineered network
+	* Inception / NASNet
+		* 모델 연결까지 학습해서 막 하는 것
+![cnnReview](images/cnn_attention_2.PNG "cnnReview")
 
-
+### cnn network with attention
+* Spatial Transformer Network
+	* Recalibration(with Transform)
+	* 어텐션 모델은 아님!
+	* mnist classification 같은 task 에서 image input 를 잘 transform 해서 학습하기 좋은 형태로 바꾸는 과정을 학습함(recalibration 컨셉 이용) --> T(theta)에서 theta 를 학습해서 넣는 것
+* Residual attention network
+	* resnet 에 attention 넣음
+	* F(x)+x 대신 F(x)+A(x) 활용
+	* 성능은 그닥 뛰어나지 않았음
+* Sqeeze and excitation network
+	* 현재 default
+	* recalibration 컨셉 활용
+	
 
