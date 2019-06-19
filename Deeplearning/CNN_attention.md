@@ -70,7 +70,7 @@
 		* 모델 연결까지 학습해서 막 하는 것
 ![cnnReview](images/cnn_attention_2.PNG "cnnReview")
 
-### cnn network with attention
+### cnn network with attention(좀 더 recalibration 쪽)
 * Spatial Transformer Network
 	* Recalibration(with Transform)
 	* 어텐션 모델은 아님!
@@ -80,7 +80,32 @@
 	* F(x)+x 대신 F(x)+A(x) 활용
 	* 성능은 그닥 뛰어나지 않았음
 * Sqeeze and excitation network
-	* 현재 default
+	* 현재의 new default
 	* recalibration 컨셉 활용
-	
+	* c개의 채널 중 어떤걸 강조해서 봐야할지에 대한 network 를 덧붙인 것(modeling inter-channel relationship)
+	* H\*W를 뭉칠 방안으로 average pool 을 해버린다.
+	![sen](images/cnn_attention_5.PNG "sen")
+* Bottleneck Attention Network
+	* channel 만 보지말고, H\*W 방향에 대해서도 attention 을 먹여보는 것
+* convolutional block attention network
+	* bottleneck attention 을 직렬로 하겠다
+![comp](images/cnn_attention_6.PNG "comp")
+- resnet 의 앞에, 뒤에, 어디에 들어가야하는지
+
+### cnn network with attention(좀 더 attention 쪽)
+* Non-local network
+* Global context attention network
+	* channel 구성시, 다른 channel 의 weight 를 얼마나 가져와야하는지 weight 가져다 구함
+	(위치에 대한 attention 을 구하는게 의미 없어보여서 이렇게 했다고 함.)
+
+### cnn attention - other vision task
+* self-attention GAN
+* style transfer
+	* 전체 픽셀을 고려하여 현재 픽셀 결정
+* dual attentiion network
+	* channel, 위치 둘다 attention 먹임
+* Criss-cross non-local attention network
+	* 연산량 줄이고자 다 보지 않고, 십자 픽셀 부분만 으로 attention 만들어 넣는 것(연산을 줄이고자)
+* Non-local in SISR
+	* super resolution 을 할 때에 attention 을 이용하겠다 라는 것
 
