@@ -55,8 +55,9 @@
 		* 기본 블록 정의 후 반복
 		![resnet](images/cnn_attention_4.PNG "resnet")
 	* ResNet Varients
-		* Pre-activation ResNet이때 activation 을 먼저 하는게 더 효과가 좋더라 라는 논문
-		(convolution -> batch norm -> relu 보다 relu -> batch norm -> convolution 이 낫더라) 
+		* Pre-activation ResNet
+			* activation 을 먼저 하는게 더 효과가 좋더라 라는 논문
+			(convolution -> batch norm -> relu 보다 relu -> batch norm -> convolution 이 낫더라) 
 		* wider channel resnet
 			* 실험적으로 채널을 크게 해보니 성능이 좋더라
 	* resnet with cardinality
