@@ -49,4 +49,9 @@ def Squeeze_excitation_layer(self, input_x, out_dim, ratio, layer_name):
 ```
 
 ### Bottleneck Attention Network
+https://blog.lunit.io/2018/08/30/bam-and-cbam-self-attention-modules-for-cnn/
+* BAM - https://arxiv.org/abs/1807.06514
+* CBAM
+
 ### convolutional block attention network
+
