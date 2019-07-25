@@ -1,11 +1,11 @@
-## celery
+# celery
 * 웹서비스에서 응답 받기 오래걸리는 작업이 있는 경우 --> 비동기로 작업은 처리하게 하고, 응답은 즉각적으로 보내게 하는게 좋음
 * 이 때 비동기로 돌아가야할 Task를 Brocker(message queue)에 쌓아두고, 각각 독립된 Worker 프로세스들은 새로운 일거리(Task)가 없는지 지속적으로 Task queue 를 감시하게 하는게 celery 의 컨셉
 * 메시지(message)를 통해 통신, Broker(rabbitMQ 같은) 클라이언트와 워커 사이에서 메시지를 중계
 브로커는 클라이언트가 큐에 새로 추가한 태스크를 메시지로 워커에 전달
 * 셀러리 시스템에서는 여러개의 워커와 브로커를 함께 사용 가능 --> 높은 가용성과 Scaling이 가능
 
-
+## rabbitMQ
 ### rabbitMQ 설치, 실행
 ```sh
 #설치
@@ -29,10 +29,10 @@ sudo rabbitmqctl stop 중단
 sudo rabbitmq-plugins enable rabbitmq_management
 ```
 - rabbit mq 관리 페이지에 접속이 가능하다
-- 페이지 접속에는 위에서 설정한 user name(user:admin/pw:admin)을 사용한다
-- 15672 포트로 접속이 가능하다(http://stella-spark.pg1.krane.9rum.cc:15672/#/)
+- 페이지 접속에는 위에서 설정한 user name과 password 를 사용한다
+- 15672 포트로 접속이 가능하다
 
-
+## celery
 ### celery 설치
 ```sh
 pip install celery
@@ -66,7 +66,18 @@ result=add.delay(random.randint(0,100), random.randint(0,100))
 result.get()
 ```
 
+### flower
+* celery 의 모니터링 툴
+* query 나 task 의 상태 확인이 가능하다
 
+```sh
+#설치
+pip install flower
+
+#실행
+#celery flower -A proj --address=127.0.0.1 --port=5555
+celery flower -A celery_app worker --loglevel=info --port=5555
+```
 
 
 
@@ -78,3 +89,4 @@ https://medium.com/sunhyoups-story/celery-b96eb337b9cf#.k1ka79f3w
 ignore_result 관련 - https://www.slideshare.net/kkungkkung/celery-52212762
 multi worker 등 관련 - https://docs.celeryproject.org/en/latest/userguide/workers.html
 https://calyfactory.github.io/celery%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%B9%84%EB%8F%99%EA%B8%B0-worker%EC%B2%98%EB%A6%AC%EB%A5%BC-%ED%95%B4%EB%B3%B4%EC%9E%90
+celery flower 관련 - https://wikidocs.net/11887
