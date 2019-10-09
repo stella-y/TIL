@@ -42,7 +42,9 @@ gatsby 정리 전 static site, JAM stack site, SPA가 뭔지와 그 포함관계
 * 쿼리를 통하여 딱 필요한 데이터만 fetching 을 하기 때문에 overfetch 혹은 underfetch 를 할 걱정을 할 필요가 없다!
 
 ### netlify
-
+* 정적 사이트의 호스팅, 자동빌드/배포, dns, ssl, cdn  설정 등의 사이트 관리 기능을 무료로 제공함
+* node, rubym python 빌드를 제공해서, 직접 빌드하고 업로드 할 필요가 없다
+* deploy 하고자하는 gatsby blog를 깃 레포에 올리고 이 레포 명을 netlify 에 등록해 놓으면, 알아서 빌드 후 디플로이 해준다!
 
 ## 기본 조작 방법
 * '''npx gatsby-cli new gatsby-example''' : 기본 웹사이트 생성
