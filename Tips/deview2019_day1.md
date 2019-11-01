@@ -54,3 +54,25 @@ catastrophic forgetting - continual learning (incremental training / inclusive t
 > 요약
 > automl 로 데이터셋 품질 개선 : PICO(Probabilistic Iterative Correction) 알고리즘
 
+레이블 노이즈 해결법
+1. robust 한 model 쓰기 --> 무거운 모델은 서빙+훈련 계산량이 매우 큼
+2. curriculumn learning / mentor net --> 추가 데이터가 더 필요해짐
+3. data cleaning - 수작업 or active learning --> 결국은 수작업...
+* split - train - check 방법
+
+* MultiSplit - Train - Check - Vote 방법
+	* split-train-check
+		* correction 용도로 훈련한 model 이용해서 label 수정
+			* label data 를 training set 과 validation set 으로 분리한 후 training data 로 모델을 학습시킨다. / 그 모델로 validation set 을 inference 했을때에 label 되어있던 결과와 그 값이 다르면 모델을 믿고 label 을 update 한다.
+		* 근데 이러면 모든 데이터를 검사할 수는 없음
+	* multisplit - train - check - vote
+		* 여러 버전의 split branch 를 구성(multisplit) / label update 를 위해 각 branch 의 split-train-check 결과를 결합(vote)
+		* voting 방법!
+			1. 가장 단순하게는 majority vote
+			2. PICO(Probabilistic Iterative COrrelation)
+				- checker 의 결과가 soft value 인걸 이용하고자(majority vote 와는 달리)
+
+
+
+
+
