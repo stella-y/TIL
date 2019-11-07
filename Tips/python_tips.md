@@ -78,3 +78,7 @@ reader = pd.read_csv("yourdata2.csv", chunksize=1000) # chunksize depends with y
 [preprocess(r) for r in reader]
 ```
 - 참고 : https://stackoverflow.com/questions/47386405/memoryerror-when-i-merge-two-pandas-data-frames
+
+### heapq 에서 heapqpushpop 과 heapreplace 의 차이
+heapq.heappushpop(pool, val) : pop 전에 val push 먼저 진행
+heapq.heapreplace(pool, val) : 현재 삽입하는 val에 관계 없이 pool 에서 가장 작았던 값 반환
