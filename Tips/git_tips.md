@@ -42,5 +42,18 @@ git push <remote repo 이름> <branch> #해당 remote repo 의 해당 branch 로
 	* 
 참고 : https://gmlwjd9405.github.io/2018/05/25/git-add-cancle.html
 
-### git rebase
-* 
+### git reset
+* Commit Level
+	|HEAD	|Index	|Workdir	|WD Safe?
+----|-------|-------|-----------|---------
+reset --soft [commit]	|REF	|NO	|NO	|YES
+reset [commit]	|REF	|YES	|NO	|YES
+reset --hard [commit]	|REF	|YES	|YES	|NO
+checkout <commit> 	|HEAD	|YES	|YES	|YES
+
+* File Level
+	|HEAD	|Index	|Workdir	|WD Safe?
+----|-------|-------|-----------|---------
+reset [commit] <paths>	|NO	|YES	|NO	|YES
+checkout [commit] <paths>	|NO	|YES	|YES	|NO
+참고 : https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-Reset-%EB%AA%85%ED%99%95%ED%9E%88-%EC%95%8C%EA%B3%A0-%EA%B0%80%EA%B8%B0
