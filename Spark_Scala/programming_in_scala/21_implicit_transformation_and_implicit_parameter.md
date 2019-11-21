@@ -125,15 +125,113 @@ button.addActionListener(
 2. scope 규칙 : 삽입된 implicit 변환은 scope 내에서 단일 식별자로만 존재하거나, 변환의 결과나 원래 타입과 연관이 있어야한다.
 	* '단일식별자' - someVariable.convert 이런 형태가 아닌 하나
 	(위의 경로에서 가져오고 싶다면 저 경로 자체를 import 해서 단일식별자로 가져올 수 있게 해야한다)
+		* 라이브러리에 유용한 암시적 변환이 들어있는 preamble 객체가 들어있는게 일반적임(import preamble.\_ 호출로 바로 사용이 가능해짐)
 	* 단일 식별자 규칙에서의 예외 - 컴파일러는 원 타입이나 변환 결과 타입의 동반 객체에 있는 암시적 정의도 살펴본다
+		(dollar 객체를 euro 객체를 취하는 메소드에 전달한다면, dollar 가 원타입이고 euro가 결과타입인 것 두 클래스의 동반객체 안에 dollar 에서 euro 로 변환하는 암시적변환 넣는게 가능함)
 ```scala
 object Dollar {
 	implicit def dollarToEuro(x: Dollar): Euro = ...
 }
 class Dollar { ... }
 ```
-		* 
+		* 컴파이일러는 dollar type 의 instance 를 다른 타입으로 변환할 필요가 있을때마다 연관이 있는 변환을 찾는다. 별도로 프로그램에 변환을 import 할 필요가 없다.
 
+
+3. 한번에 하나만 규칙 : 오직 하나의 암시적 선언만 사용한다.
+	* e.g. x+y를 convert1(convert2(x))+y 로 변환하지는 않는다.
+	* 암시 선언 안에서 암시 파라미터 사용해서 이 제약을 우회할 수 있는데, 이건 추후 설명...
+4. 명시성 우선 규칙 : 코드가 그 상태 그대로 타입 검사를 통과한다면 암시를 통한 변환을 시도하지는 않는다.
+
+5. 암시적 변환 이름붙이기
+	* 아래 두 경우 암시적 변환의 이름을 이용하게 됨
+		* 메소드 호출시 명시적으로 변환을 사용하고 싶은 경우
+		* 프로그램의 특정 지점에서 사용 가능한 암시적 변환이 어떤 것이 있는지 파악해야 하는 경우
+```scala
+object MyConversions {
+	implicit def stringWrapper(s: String):
+	  IndexedSeq[Char]=...
+	implicit def intToString(x: Int): String = ...
+}
+
+...
+//위 객체를 이용하되 stringWrapper의 변환만 이용하고 싶은 경우
+// 이름으로 이중 하나만 가져온다.
+import MyConversions.stringWrapper
+.../stringWrapper 를 암시적으로 사용하는 코드.
+...
+```
+- 암시가 쓰이는 부분
+	1. 값을 컴파일러가 원하는 타입으로 변환
+	2. 어떤 선택의 수신 객체를 변환
+		e.g. "abc".exists --> stringWrapper("abc").exists
+	3. 암시적 파라미터를 지정
+		암시적 파라미터 - 보통 함수 호출시 호출하는 쪽에서 원하는 추가 정보를 함수에 제공하고싶을 때 사용
+		제네릭 함수에서 특히 유용함 - 암시적 파라미터가 없다면 제네릭 함수의 인자 중 일부의 타입에 대해 정보가 없을수도 있기 때문에
+
+### 21.3 예상 타입으로의 암시적 변환
+* 컴파일러가 Y 타입이 필요한 위치에서 X 타입을 봤다면 X 를 Y 로 변환하는 암시적 함수를 찾는다.
+```sh
+scala> val i: Int=3.5
+<console>:7:error : typemismatch;
+found : Double(3.5)
+require : intToString
+	val i : Int =3.5
+
+## 여기에 암시적 변환 활용
+scala> implicit def doubleToInt(x: Double) = x.toInt
+doubleToInt: (x: Double)Int
+scala> val i : Int=3.5
+i: Int=3
+```
+
+### 21.4 호출 대상 객체 변환
+* 메소드를 호출하는 대상이 되는 객체인 수신 객체에도 적용할 수 있음
+* 이때의 용도는 두가지
+	1. 수신 객체 변환을 통해 새 클래스를 기존 클래스 계층 구조에 매끄럽게 통합할 수 있다.
+	2. 언어 안에서 도메인 특화언어(DSL)만드는 일을 지원한다.
+
+#### 새타입과 통합하기
+* 새 타입과 기존 타입을 매끄럽게 통과하는걸 목표로 함
+```scala
+class Rational (n: Int, d: Int){
+	...
+	def + (that: Rational): Rational = ...
+	def + (that: Int): Rational = ...
+}
+scala > val oneHalf=new Rational(1,2)
+scala > oneHalf+oneHalf
+scala > oneHalf+1
+scala > 1+oneHalf //--> 이건 에러난다
+
+implicit def intToRational(x: Int)= new Rational(x, 1)
+//이렇게 해주면 수신 객체 변환이 나머지를 처리해준다
+scala > 1+oneHalf
+res2:Rational=3/2
+```
+* 컴파일러가 먼저 1+oneHalf 를 그대로 읽고 타입검사 -> Int 의 +메소드 중 rational 을 받는건 없기때문에 타입오류 발생 -> Int 를 인자로 rational 을 받을 수 있는 +메소드를 정의한 다른 타입으로 변환할 수 있는지 차아본다.
+(intToRational(1)+oneHalf)로 동작하고 있을 것
+
+#### 새로운 문법 흉내내기
+```scala
+Map(1 -> "one", 2-> "two", 3->"three")
+```
+* map 에서의 화살표는 사실 문법이 아니다
+* -> : 표준 스칼라 프리엠블(scala.Predef)에 있는 ArrowAssoc클래스의 메소드
+```scala
+package scala
+object Predef{
+	class ArrowAssoc[A](x: A){
+		def -> [B](y: B): Tupe2[A, B]=Tuple2(x, y)
+	}
+	implicit def any2ArrowAssoc[A](x: A):ArrowAssoc[A]=new ArrowAssoc(x)
+	...
+}
+```
+
+#### 암시적 클래스
+
+
+### 21.5 암시적 파라미터
 
 
 
