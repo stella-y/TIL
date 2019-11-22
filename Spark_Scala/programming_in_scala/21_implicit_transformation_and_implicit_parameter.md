@@ -229,10 +229,30 @@ object Predef{
 ```
 
 #### 암시적 클래스
+* 스칼라 2.10부터는 래퍼클래스를 더 쉽게 사용할 수 있도록 암시적 클래스가 추가됨
+* 암시적 클래스 : implicit 키워드가 클래스 선언부 앞에 있는 클래스
+	* 컴파일러는 클래스 생성자를 이용해 다른 타입에서 그 (암시적)클래스로 가는 암시적 변환을 만들어낸다.
+```scala
+//아래 클래스를 자주 사용하기때문에 래퍼패턴을 풍부하게 하고자 함
+case class Rectangle(width: Int, height: Int)
 
-
-### 21.5 암시적 파라미터
-
+implicit class RectangleMaker(width: Int){
+	def x(height: Int)=Rectangle(width, height)
+}
+```
+* 위 코드 처럼 implicit 으로 구현하고 나면 아래와 같은 함수들이 자동으로 생성된다
+```scala
+//자동으로 생성된 변환함수
+implicit def RectangleMaker(width: Int){
+	new RectangleMaker(width)
+}
+```
+* 위처럼 되고 나면 아래처럼 x를 두 정수 사이에 넣을 수 있게 된다.
+```scala
+scala > val myRectangle=3x4
+myRectangle: Rectangle=Rectangle(3,4)
+```
+* int 에는 x 라는 method 가 없으니, 컴파일러는 자동생성된 RectangleMaker 변환 찾기 -> 컴파일러는 변환을 호출하는 코드를 자동으로 넣어줄 것
 
 
 
