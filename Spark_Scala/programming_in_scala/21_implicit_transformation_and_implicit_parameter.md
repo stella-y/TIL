@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-public class ActionExam implements ActionListener{
+public class ActionExam implements ActionListener{ 
 	JButton btn1 = new JButton("클릭1"); //버튼 생성
 	JButton btn2 = new JButton("클릭2"); //버튼 생성
 	public ActionExam() //생성자
@@ -72,7 +72,6 @@ button.addActionListener(
 	}
 )
 ```
-
 	* 그런데 이때에 준비과정을 위한 코드가 너무 많다는게 책에서의 주장...
 		* (리스너가 ActionListener인 것/ 콜백 메소드가 actionPerformed 라는 것/ 리스너 추가 함수에 전달할 인자가 action event 인 것)
 		* addActionListener 에 전달할 인자라면 당연한 것이므로, 위의 세가지는 다 필요없는 정보.
@@ -93,7 +92,7 @@ implicit def function2ActionListener(f: ActionEvent => Unit) =
 	}
 	//유일한 인자로 함수를 받아서 action listner 를 반환
 ```
-* 이러면 아래와 같이 동작이 가능하고,
+* 이러면 아래와 같이 동작이 가능하고, 
 ```scala
 button.addActionListener(
 	function2ActionListener(
@@ -107,7 +106,6 @@ button.addActionListener(
 	(_: ActionEvent) => println("pressed!")
 )
 ```
-
 	* 위코드 동작방식
 		* 컴파일러는 코드를 그대로 컴파일 시도 -> 타입오류 발생 -> 암시적변환으로 문제 해결 가능한지 확인 -> function2ActionListener 가 있으니 이걸로 시도해본다 -> 작동하면 계속 다음단계를 진행한다...
 
@@ -136,11 +134,10 @@ object Dollar {
 }
 class Dollar { ... }
 ```
-
 		* 컴파일러는 dollar type 의 instance 를 다른 타입으로 변환할 필요가 있을때마다 연관이 있는 변환을 찾는다. 별도로 프로그램에 변환을 import 할 필요가 없다.
 
 
-3. 한번에 하나만 규칙 : 오직 하나의 암시적 선언만 사용한다.
+3. 한번에 하나만의 규칙 : 오직 하나의 암시적 선언만 사용한다.
 	* e.g. x+y를 convert1(convert2(x))+y 로 변환하지는 않는다.
 	* 암시 선언 안에서 암시 파라미터 사용해서 이 제약을 우회할 수 있는데, 이건 추후 설명...
 4. 명시성 우선 규칙 : 코드가 그 상태 그대로 타입 검사를 통과한다면 암시를 통한 변환을 시도하지는 않는다.
@@ -256,3 +253,11 @@ scala > val myRectangle=3x4
 myRectangle: Rectangle=Rectangle(3,4)
 ```
 * int 에는 x 라는 method 가 없으니, 컴파일러는 자동생성된 RectangleMaker 변환 찾기 -> 컴파일러는 변환을 호출하는 코드를 자동으로 넣어줄 것
+
+
+
+
+
+
+
+
