@@ -19,3 +19,8 @@ Paket 세트
 
 
 Sila berdiri 일으켜달라
+Minta bon 계산서주세요
+Cepat cepat 빨리빨리
+Hati hati 조심조심
+Masuk 들어오다
+Ragi 다시
