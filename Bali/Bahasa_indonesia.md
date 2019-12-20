@@ -24,7 +24,9 @@ Cepat cepat 빨리빨리
 Hati hati 조심조심
 Masuk 들어오다
 Ragi 다시 (satu ragi : 한 번 더)
-Suda 다했다
+Suda 준비됐다
+Habis 다했다
+
 
 Maaf 미안합니다
 Pak 아저씨
