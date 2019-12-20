@@ -32,3 +32,7 @@ Bagus 최고
 
 Si apa 무엇
 Kapan 언제
+
+Slamat pagi 좋은아침
+Slamat sore 좋은 오후
+Slamat tinggal 안녕히계세요
