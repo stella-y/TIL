@@ -115,3 +115,63 @@
     3. 각 상자에서 크기 n인 bootstrap sample 추출
     4. 두 bootstrap sample 에 대해서 permutation test → repeat
     - 얼마나 자주 유의미한 차이가 나는지 발견
+
+
+## 4. Regression and prediction
+
+### 4.1 Simple linear regression
+
+- term
+    - response variable(=dependent variable) / independent variable(=feature, property)
+    - interception / regression coefficient  / fitted value / residual
+    - RSS(Residual Sum of Square) / mininum sum of square regression / ordinary least squares regression
+
+### 4.2 Multiple linear regression
+
+- term
+    - RMSE(Root Mean Square Error) / RSE(Residual standard error) / R-squared (=coefficient of decision) / t-statistics
+    - cross validation / k-fold cross validation / Occam's Razor / AIC(Akaike's information criteria) / all subset regression / stepwise regression
+- stepwise regression
+    - 예측 변수를 연속적으로 추가/삭제해서 AIC를 낮춘다
+    - 종류
+        - forward selection
+            - R-square 에 가장 큰 기여도를 갖는 예측 변수를 하나씩 추가하고 기여도가 통계적으로 더이상 유의미하지 않을 때 중지함
+        - backward selection(=backward elimination)
+            - 전체 변수에서 모델이 통계적으로 유의미할 때까지 하나씩 제거해 감
+        - penalized regression
+            - 위에서처럼 예측변수를 완전히 제거하는 대신 계수의 크기를 감소시키거나 거의 0으로 만들어버림
+            - e.g.) Ridge regression, Lasso regression
+    - 모델을 평가하고 조정하는 표본 내 방법 (과적합 가능 / 새 데이터에 잘 맞지 않을 수도 있음) 즉 k-fold cross validation과정이 매우 중요함
+- weighted regression
+    - Used to weight each record when fitting the equation.
+
+### 4.3 Prediction using regression
+
+- extrapolation : Extending the model beyond the data range used for modeling
+- Confidence interval for each coefficient - 회귀 계수 주변의 불확실성을 정량화
+- Prediction interval for prediction value - 개별 예측값의 불확실성을 정량화
+
+### 4.4 Factor variable in regression
+
+- term
+    - dummy variable / one-hot encoding / deviation coding
+    - ordered factor variable(=ordered categorical variable)
+- In case of factor variable with multiple levels, the level should be consolidated to be a variable with fewer levels.
+
+### 4.5 Interpretation of regression equation
+
+- correlation between predictive variable
+    - It can make it difficult to interpret the meaning of the sign and value of the regression coefficient
+- multicolinearity
+    - when the correlation of variables is extream
+        - e.g.
+            - 오류로 인해 한 변수가 여러 번 포함
+            - 요인 변수로부터 p-1개가 아닌 p개의 가변수가 만들어진 경우
+            - 두 변수가 서로 거의 완벽하게 상관성이 있는 경우
+    - 보통 소프트웨어 패키지가 걸러냄
+- confound variable
+    - The variable missed on the equation, even though it is important
+- interaction between variables
+    - group it!
+    - 찾아내기 어려울 수 있음
+    - random forest, gradient boosting tree 사용하면 바로 알겠지.
