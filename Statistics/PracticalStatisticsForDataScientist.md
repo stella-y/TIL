@@ -175,3 +175,24 @@
     - group it!
     - 찾아내기 어려울 수 있음
     - random forest, gradient boosting tree 사용하면 바로 알겠지.
+
+### 4.6 Assumption testing : regression diagnosis
+
+- term
+    - standardized residual / outlier / influential value / leverage(=hat value)
+- Outlier : 구분해내는 통계적 방법은 없음(경험칙이 존재할 뿐)
+    - 회귀에서는 standardized residual로 검출
+    - standardized residual : 회귀선으로부터 떨어진 정도를 표준오차 개수로 표현한 값 (잔차를 표준오차로 나눈 값)
+- influential value
+    - influential observation : The value that causes significant changes from model when excluded from regression (= high leverage: The degree to which one record affected the regression expression)
+    - leverage 측정 지표 : hat-value / cook's distance (leverage + residual)
+    - 이건 데이터가 작을때에만 유용함
+- partial residual plot : The plot visualizes how well the predictive model describes the relationship between predictor and outcome.
+    - partial residual : residual+b_i\*X_i
+    - 이게 선형 성을 띠면 원래대로 선형 모델을 만드는 것이 유의미 할것 → 그러나 그렇지 않다면 비선형 항을 고려해 보아야 함
+    - 각 회귀 항의 적합성을 정량적으로 평가. 즉 대체 모델에 대한 아이디어를 얻을 수 있음
+
+### 4.7 Polynomial regression and spline regression
+
+- spline : 고정된 점들 사이를 부드럽게 보간 (일련의 조각별 연속 다항식)
+- GAM(Generalized Additive Model) : 스플라인 회귀를 자동으로 찾음 (knot 를 자동으로 결정함)
