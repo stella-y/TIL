@@ -196,3 +196,20 @@
 
 - spline : 고정된 점들 사이를 부드럽게 보간 (일련의 조각별 연속 다항식)
 - GAM(Generalized Additive Model) : 스플라인 회귀를 자동으로 찾음 (knot 를 자동으로 결정함)
+
+
+### 5. Classification
+
+### 5.1 Naive bayes
+
+- term
+    - conditional probability / posterior probability / prior probability / likelihood
+- not naive : 모든 predictive 가 같은 레코드를 찾고, 해당 레코드들이 가장 많이 속한 클래스를 정함
+- naive : 모든 predictive 가 독립이라는 가정 (P(x_1, x_2, ..., x_p|y=i) 대신 P(x_j|y=i) 이용)
+- P(Y|X)=(likelihood * prior) / evidence = P(x_1, x_2, ..., x_p|y=i) * P(Y) / P(x_1, x_2, ..., x_p)
+- shortage
+    - 빈번한 0 (분자에 bias*prior 더하는 걸로 해결)
+    - 종속성 있으면 안됨
+- Both predictor and outcome variables should be categorical.
+- Answering : 'Which category of predictor is most likely within each output category'
+
