@@ -213,3 +213,11 @@
 - Both predictor and outcome variables should be categorical.
 - Answering : 'Which category of predictor is most likely within each output category'
 
+### 5.1 Discriminant analysis
+
+- term
+    - covariance / discriminant function / discriminant weight
+- LDA(Linear Discriminant Analysis)
+    - SS_내부 (그룹 안의 변동 측정) SS_사이(그룹 사이의 편차 측정)
+    - SS_사이 / SS_내부 를 최대화 하는 선형 결합(w_x * x +w_z * z)찾기
+    - linear discriminant function 로 클래스에 속할 가중치 혹은 점수를 구한다
