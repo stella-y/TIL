@@ -240,17 +240,18 @@
 ### 5.4 Classification model evaluation
 
 - confusion matrix
+
 |     | y^=1 | y^=0 |
 |-----|------|------|
 | y=1 | TP   | FN   |
 | y=0 | FP   | TN   |
 
-    - precision : Accuracy of positive results
-        - 참양성 / 양성판정 = TP/(TP+FP)
-    - recall(=sensitivity) : Evaluates the model's ability to predict positive results
-        - 참양성 / 전체 양성 = TP/(TP+FN)
-    - specificity : Evaluates the model's ability to predict negative results
-        - 참음성 / 전체 음성 = TN/(TN+FP)
+- precision : Accuracy of positive results
+    - 참양성 / 양성판정 = TP/(TP+FP)
+- recall(=sensitivity) : Evaluates the model's ability to predict positive results
+    - 참양성 / 전체 양성 = TP/(TP+FN)
+- specificity : Evaluates the model's ability to predict negative results
+    - 참음성 / 전체 음성 = TN/(TN+FP)
 - ROC curve
     - Expresses the trade-off relationship between recall and specificity
     - specificity for x axis / recall for y axis
