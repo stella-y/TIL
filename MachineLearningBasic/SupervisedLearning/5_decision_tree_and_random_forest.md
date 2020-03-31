@@ -19,23 +19,23 @@
 	3. 각각의 자식노드에 대해 1,2 의 과정 반복하며 하위노드 만들어 감(자식노드에 하나의 클래스 데이터만 존재하면 더이상 증식 않고 중지)
 * 예측 방법
 	* 노드에 속한 데이터의 클래스의 비율을 구해서 이를 그 노드의 조건부 확률 분포로 정의
-	![decision_tree](images/5_3.png "decision_tree")
+	![decision_tree](images/5_3.PNG "decision_tree")
 	* 테스트 데이터 예측시엔 root node 부터 규칙 차례로 적용해서 마지막에 도달하는 노드의 조건부 확률 분포로 클래스 예측
-	![decision_tree](images/5_4.png "decision_tree")
+	![decision_tree](images/5_4.PNG "decision_tree")
 * 분류 규칙 정하기
 	* 부모노드와 자식노드 간 엔트로피를 가장 낮게 만드는 최상의 독립 변수와 기준값을 찾는 것
 	* 모든 가능한 기준값에 대해 정보 획득량을 구해, 가장 정보 획득량이 큰 변수와 기준값 선택
 * 정보 획득량
 	IG[Y,X]=H[Y]−H[Y|X]
 	* e.g.
-	![decision_tree](images/5_1.png "decision_tree")
+	![decision_tree](images/5_1.PNG "decision_tree")
 	1. 부모의 정보 획득량
-		![decision_tree](images/5_2.png "decision_tree")
+		![decision_tree](images/5_2.PNG "decision_tree")
 	2. 자식의 정보 획득량
 		A 방법
-		![decision_tree](images/5_5.png "decision_tree")
+		![decision_tree](images/5_5.PNG "decision_tree")
 		B 방법
-		![decision_tree](images/5_6.png "decision_tree")
+		![decision_tree](images/5_6.PNG "decision_tree")
 
 
 * Random forest
