@@ -1,9 +1,9 @@
 ## Gradient / Backpropagation / Activation function
 ### gradient
 * 편미분 값들의 벡터
-![gradient](images/b1_1.png "gradient")
-![gradient](images/b1_2.png "gradient")
-![gradient](images/b1_3.png "gradient")
+![gradient](images/b1_1.PNG "gradient")
+![gradient](images/b1_2.PNG "gradient")
+![gradient](images/b1_3.PNG "gradient")
 
 ### backpropagation
 * forward step - gate 통과하면서 실제 값을 계산
@@ -27,19 +27,19 @@
 	* svm 과 더불어 많이 쓰이는 classifier
 	* logistic regression classifier 의 multiple class 에 대한 일반화 개념
 	* Class 를 나눌 feature 의 score가 값이더라도 이거에 의해서 multi class 에서 각각의 class 에 해당될 확률이 합이 1이 될 수 있도록
-	![softmax](images/1_2.png "softmax")
+	![softmax](images/1_2.PNG "softmax")
 
 ## Cross-entropy function
 * cross entropy
 	* 2개의 확률 분포 차이를 나타내는 용도로 정의됨(cross correlation)
 	* 두 확률 분포 p 와 m 에 대한 cross entropy 값
 	* 두개의 확률 분포가 얼마나 가까운지 혹은 먼지를 나타냄
-	![cross_entropy](images/1_4.png "cross_entropy")
+	![cross_entropy](images/1_4.PNG "cross_entropy")
 		* 차이가 클수록 큰 값이 나오고 두개가 같아질때 최소 값이 나온다.
 		==> 기대값과 실제 연산값의 차가 클수록 큰 결과가 나오고 결과가 항상 양
 		==> cost function 으로 활용이 가능한 것
 		* 정보 이론에서의 entropy
-		![entropy](images/1_3.png "entropy")
+		![entropy](images/1_3.PNG "entropy")
 	
 
 

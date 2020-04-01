@@ -4,22 +4,22 @@
 1. sigmoid : 
 	* sigmoid 함수(=로지스틱 함수)
 		* 뉴런이 뱉어주는 값을 s 자 커브로 자연스럽게 활성화해줌
-	![sigmoid](images/2_1.png "sigmoid")
+	![sigmoid](images/2_1.PNG "sigmoid")
 		* exp 연산이라 무거움 --> 학습이 느려짐
 	* sigmoid 의 그래프
-	![sigmoid](images/2_2.png "sigmoid")
+	![sigmoid](images/2_2.PNG "sigmoid")
 		* 값의 범위가 [0,1] --> 수렴 속도가 느려짐
 	* sigmoid 1차미분 그래프
-	![sigmoid](images/2_3.png "sigmoid")
+	![sigmoid](images/2_3.PNG "sigmoid")
 		* x 값이 크거나 작을 때에 gradient 값이 지나치게 작아짐 --> 학습이 잘 안됨
 2. hyperbolic tangent(tanh)
 	* sigmoid 의 크기와 위치를 조절한 함수
-	![tanh](images/2_4.png "tanh")
+	![tanh](images/2_4.PNG "tanh")
 		* [-1, 1]
 	* tanh 그래프
-	![tanh](images/2_5.png "tanh")
+	![tanh](images/2_5.PNG "tanh")
 	* tanh 1차 미분 그래프
-	![tanh](images/2_6.png "tanh")
+	![tanh](images/2_6.PNG "tanh")
 		* sigmoid 처럼 x 가 크거나 작아지면 gradient 가 0으로 작아짐
 3. relu : 
 	* f(x)=max(0,x)
