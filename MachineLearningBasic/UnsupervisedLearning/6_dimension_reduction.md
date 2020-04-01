@@ -14,11 +14,11 @@
 
 
 ### SVD
-* A[m*n]=U[m*r]sigma[r*r]transpose(V[n*r])
+* A[m\*n]=U[m\*r]sigma[r\*r]transpose(V[n\*r])
 	* A : Input data matrix (e.g. m documents, n terms)
 	* U : Left singular vectors (m documents, r concepts)
 	* sigma : singular values
-		- r*r diagonal matrix(strength of each 'concept')
+		- r\*r diagonal matrix(strength of each 'concept')
 		- r: rank of the matrix A
 	* V : Right singular vectors (n terms, r concepts)
 
@@ -60,13 +60,12 @@
 
 
 ### matrix factorization
-* 
 
 
 * 참고
-https://wikidocs.net/7646
-https://bcho.tistory.com/1209
-http://mllab.sogang.ac.kr/index.php?mid=research_subj_fs
-https://kkokkilkon.tistory.com/127
-https://darkpgmr.tistory.com/110
-https://www.slideshare.net/ssuser06e0c5/visualizing-data-using-tsne-73621033
+	- https://wikidocs.net/7646
+	- https://bcho.tistory.com/1209
+	- http://mllab.sogang.ac.kr/index.php?mid=research_subj_fs
+	- https://kkokkilkon.tistory.com/127
+	- https://darkpgmr.tistory.com/110
+	- https://www.slideshare.net/ssuser06e0c5/visualizing-data-using-tsne-73621033

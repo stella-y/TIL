@@ -1,6 +1,9 @@
 ## 분류 모델에 쓸 수 있는 metric
 ### confusion matrix
-	* true positive, true negative, false positive, false negative
+|     | y^=1 | y^=0 |
+|-----|------|------|
+| y=1 | TP   | FN   |
+| y=0 | FP   | TN   |
 * accuracy
 	* (true positive+ true nagative)/(전체 데이터(positive + negative))
 * error rate
@@ -21,6 +24,7 @@
 	* (false positive)/(false negative + true negative)
 
 ### F1 score
+* F1 score
 	* `2*(precision*recall)/(precision+recall)`
 	* Precision 과 recall 을 한번에 나타내기 위해서
 		* 두 수의 조화평균을 사용
@@ -38,23 +42,23 @@
 
 
 ### ROC curve (Receiver operating characteristic)
-	* 가로축을 false positive rate(1-specificity : specificity = (true negative)/(true negative + false positive))의 비율로 하고, 세로축을 true positive rate() 로 해서 시각화
-	* 1차원 공간에서 두 종류의 점을 가르는 지점으로 Split 
-	* 가능한 모든 split 을 생각해서 이 각각의 true positive rate, false positive rate 을 구함
-	* 보통의 형태
-	![roc_curve](images/2_1.png "roc_curve")
+* 가로축을 false positive rate(1-specificity : specificity = (true negative)/(true negative + false positive))의 비율로 하고, 세로축을 true positive rate() 로 해서 시각화
+* 1차원 공간에서 두 종류의 점을 가르는 지점으로 Split 
+* 가능한 모든 split 을 생각해서 이 각각의 true positive rate, false positive rate 을 구함
+* 보통의 형태
+![roc_curve](images/2_1.PNG "roc_curve")
 	- 그래프가 위로 뜰수록 더 잘 분류하는 모델인 것
-	* 그리고 이를 plane 에 plot 함
-		* *AUC*(Area Under Curve) 이 plot 한 곳의 넓이
-		(perfect split 이면 1(네모), random 은 0.5, good 은 0.8 정도)
+* 그리고 이를 plane 에 plot 함
+	* *AUC*(Area Under Curve) 이 plot 한 곳의 넓이
+	(perfect split 이면 1(네모), random 은 0.5, good 은 0.8 정도)
 	* 얼마나 잘 split 가능한지를 판별 --> 1에 가까울 수록 더 좋은 모델인 것
-	* 0.5 이하인 경우 --> flipping 돼 있으면 0일거야
+	* 0.5 이하인 경우 --> flipping 돼 있으면 0일 것
 
 ### precision recall plot
 * 주로 데이터 라벨의 분포가 심하게 불균등할 때 사용함
 (e.g. 98% vs 2%)
 * x축 : recall / y축 : precision
-![pr_plot](images/2_2.png "pr_plot")
+![pr_plot](images/2_2.PNG "pr_plot")
 
 
 ## Regression model 에 쓸 수 있는 metric
