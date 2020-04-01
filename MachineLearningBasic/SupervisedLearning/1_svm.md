@@ -6,7 +6,8 @@
 * 훈련 관측치에서 주어진 초평면까지의 수직거리를 계산하고, 이 값에 따라 최적의 초평면 선택
 * 이 최적의 초평면 선택의 기준이 분리 초평면에서 마진이 가장 큰 것
 * 초 평면에 가장 가까운 분류 기점의 벡터 --> support vector
-![sv](images/1_1.PNG "svm")
+
+![svm](images/1_1.PNG "svm")
 
 ### support vector classifier
 * 최대 마진 분류기의 확장
