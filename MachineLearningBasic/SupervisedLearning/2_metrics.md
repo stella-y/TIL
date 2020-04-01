@@ -4,6 +4,7 @@
 |-----|------|------|
 | y=1 | TP   | FN   |
 | y=0 | FP   | TN   |
+
 * accuracy
 	* (true positive+ true nagative)/(전체 데이터(positive + negative))
 * error rate
@@ -38,7 +39,7 @@
 		* 산술 -> 그냥 평균
 		* 기하 -> 연평균 증가율
 		* 조화 -> 평균 속력
-	* type 1 error = false negative / type 2 error = false positive
+	* type 1 error = false positive / type 2 error = false negative
 
 
 ### ROC curve (Receiver operating characteristic)
