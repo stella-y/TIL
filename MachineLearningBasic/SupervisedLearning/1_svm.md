@@ -30,7 +30,9 @@
 	* kernel 인자에 polynomial 입력, degree 로 차수 조절
 	* kernel 인자에 radial 입력 - 방사형 커널 수행 / gamma 와 cost 조절
 
-svm 에서의 cost function
+
+### svm 에서의 cost function
+
 * Classification error
 	* Margin line 을 더 그린다(wx+b=1 , wx+b=-1)
 		* 이 거리를 같이 둔 상태로 error function 을 적용함
