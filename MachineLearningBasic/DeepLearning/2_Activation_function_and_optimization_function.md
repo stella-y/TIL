@@ -1,4 +1,11 @@
-## Activation function / Optimization function
+## Loss function / Activation function / Optimization function
+### Loss function
+- 최적의 매개변수 값을 탐색하는 하나의 지표
+- e.g. rmse, cross entropy function
+- 연속적인 부드러운 함수를 사용해야함
+	- 매개 변수의 값이 조금 변하면 그에 반응해서 손실함수의 값도 연속적으로 변해줘야 학습이 잘 될 것이므로
+	- 그래서 정확도 혹은 계단 함수 등을 바로 사용할수 없는 것
+
 ### activation function
 * linearity 를 제거
 1. sigmoid : 

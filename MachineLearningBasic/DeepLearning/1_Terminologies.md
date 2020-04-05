@@ -1,9 +1,14 @@
 ## Gradient / Backpropagation / Activation function
-### gradient
-* 편미분 값들의 벡터
+### gradient (기울기)
+* 모든 변수의 편미분을 벡터로 정리한 것
 ![gradient](images/b1_1.PNG "gradient")
 ![gradient](images/b1_2.PNG "gradient")
 ![gradient](images/b1_3.PNG "gradient")
+- 기울기가 가리키는 방향은 각 장소에서 함수의 출력 값을 가장 크게 줄이는 방향
+
+### gradient descent
+- 현 위치에서 기울어진 방향으로 **일정 거리(learning rate)**만큼 이동, 그런다음 이동한 곳에서도 마찬가지로 기울기를 구하고, 또 그 기울어진 방향으로 나아가기를 반복
+- 이때 매개변수 갱신은 미니배치로 무작위로 선정 --> stochastic gradient descent!
 
 ### backpropagation
 * forward step - gate 통과하면서 실제 값을 계산
@@ -14,9 +19,10 @@
 ### Activation function
 * 입력 신호의 총 합을 출력신호로 변환하는 함수
 * perceptron 과 neural net 의 차이점
-* 이거 없이 그냥 쌓으면 hidden layer 가 있다는 의미가 사라질 수가 있음
+* 이거 없이 그냥 쌓으면 hidden layer 가 있다는 의미가 사라질 수가 있음 (non-linearity를 추가)
 (h(x)=cx 를 활성화함수로 사용한 3층 네트워크 <==> y(x)=h(h(h(x)))
 실은 y(x)=ax와 똑같은 식 인거라 a=c3이라고만 하면 끝)
+- e.g. relu, sigmoid...
 
 ## classification 에서
 * sigmoid function
@@ -31,6 +37,7 @@
 
 ## Cross-entropy function
 * cross entropy
+	* loss function 으로 사용 가능
 	* 2개의 확률 분포 차이를 나타내는 용도로 정의됨(cross correlation)
 	* 두 확률 분포 p 와 m 에 대한 cross entropy 값
 	* 두개의 확률 분포가 얼마나 가까운지 혹은 먼지를 나타냄
