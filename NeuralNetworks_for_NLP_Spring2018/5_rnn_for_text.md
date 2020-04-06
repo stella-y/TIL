@@ -57,4 +57,13 @@
 * pre-training task 는 학습이 쉽고 데이터 양이 많은 task / main task 는 학습이 어렵고 데이터가 적은 task
 	* Language Model --> sentence classifier
 
+### gradient clipping
+- why?
+	- rnn은 bptt 통해서 시간에 역행하면서 기울기를 구하는데, 매 time-step마다 rnn의 파라미터에 기울기가 더해져서 출력의 길이에 따라서 기울기 크기가 달라짐
+	- 학습률을 조절해서 gradient descent update 속도를 조절해야 함
+- gradient clipping
+	- 신경망 파라미터 $\theta$ 의 norm(보통 L2 norm)을 구하고, 이 norm의 크기를 제한
+	- 기울기 벡터gradient vector의 방향은 유지하되, 그 크기는 학습이 망가지지 않을 정도로 줄어들 수 있음
+	- 물론 norm의 최댓값을 사용자가 지정해주어야 하므로 또 하나의 하이퍼파라미터가 생기지만, 최댓값보다 큰 norm을 가진 기울기 벡터의 경우에만 그래디언트 클리핑을 수행하므로, 능동적으로 학습률을 조절하는 것과 비슷한 효과를 가질 수 있음
 
+https://kh-kim.gitbook.io/natural-language-processing-with-pytorch/00-cover-6/05-gradient-clipping

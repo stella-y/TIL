@@ -2,6 +2,10 @@
 * Bagging
 	* 여러 week learner 에게 subset 에 대해서 classification 을 의뢰
 	* 이들의 결과를 voting 으로 겹쳐서 하나의 super model 을 만듦
+	- soft vote and hard vote
+		- hard vote : 클래스 예측 값을 최종 값으로 예측
+		- soft vote : 각각의 확률의 평균 값 계산해서 가장 확률 높은 값으로 확정
+	- soft vote 가 더 합리적
 * Boosting
 	* 한쪽 분야에만 특화된 learner 들에게 자신에게 맞는 문제만 풀게 하고, 그 결과물을 합쳐서 super model 을 만듦
 	* Adaboost

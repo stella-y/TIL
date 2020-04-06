@@ -68,5 +68,5 @@
 * R2 score --> simplest possible model 과 비교해서 얼마나 다른가
 	* Simplest possible model : 모든 점들을 평균내서 그은 선
 	* (즉 현재 제작한 모델이 input에 따라서 output 이 얼마나 잘 변하는지 설명해주는 지표라고 볼 수 있음)
-	* R2=1-(mse/simplest model 의 평균선)
+	* R2=1-(mse of regression line/mse of simplest model 의 평균선)
 		--> 이게 1에 가까울수록 좋은 모델 / 0에 가까울수록 안좋은 모델

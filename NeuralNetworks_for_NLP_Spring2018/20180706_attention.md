@@ -1,6 +1,5 @@
-	• Sentence 하나를 single vector 하나로 표현할 수는 없다! 라는 문제제기에서 출발
-		○ 단어 하나마다 vector를 두는 식?
-	• Attention
+## attention
+- Sentence 하나를 single vector 하나로 표현할 수는 없다! 라는 문제제기에서 출발
 		○ Basic idea
 			§ attention을 어디다 넣느냐도 사실은 design choice
 		○ Calculating attention

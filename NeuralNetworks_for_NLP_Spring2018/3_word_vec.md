@@ -10,7 +10,7 @@
 			* count-based method
 				* word-context count matrix
 					* co-occurrence 세기 (rows as word, columns as contexts)
-					* weight - pointwise mutual듯information / reduce dimensions with svd
+					* weight - pointwise mutual information / reduce dimensions with svd
 			* prediction-based method
 				* 부차적인 결과물로서 word embedding 을 기대하는 것
 				* language model 등의 결과물로...
@@ -39,6 +39,7 @@
 	* Log(k) --> negative sampling (뒷부분이 무거워서 쓰는 다른 방법)
 
 * GloVe
+	- 통계적 방법
 	![GloVe](images/3_4.png "GloVe")
 	* A matrix factorization approach motivated by ratios of P(word | context) probabilities
 	* 단점 : word * context matrix 를 반드시 만들어야 진행이 가능해서 scalability 에 문제가 있어
@@ -78,3 +79,5 @@
 	* Sparse Embeddings
 		* 차원 해석이 불가능하다는 점의 해결 --> regularization 해서 sparse vector 로 변환하여
 	* De-biasing Word Embeddings
+
+참고 : https://ratsgo.github.io/from%20frequency%20to%20semantics/2017/04/09/glove/
