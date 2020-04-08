@@ -7,22 +7,25 @@
 	* distributional vs. distributed representation
 		* distributional
 			* 단어는 context 안에서 표현됨
-			* count-based method
-				* word-context count matrix
-					* co-occurrence 세기 (rows as word, columns as contexts)
+			* count-based method (statistical 방법론)
+				* **word-context count matrix**
+					* co-occurrence 세기 (rows as word, columns as contexts(window))
 					* weight - pointwise mutual information / reduce dimensions with svd
+					* co-occurrence matrix -> ppmi matrix -> svd 로 차원감소(단어가 많아질수록 vector 크기가 막 커질 위험이 있으니)
 			* prediction-based method
+				* **language model의 결과물 등...**
 				* 부차적인 결과물로서 word embedding 을 기대하는 것
-				* language model 등의 결과물로...
 				![prediction-based](images/3_1.png "prediction-based")
 			* Context Window Methods
-				* Window size 만큼의 앞 뒤의 context 를 참조해
+				* **cbow, skipgram**
+				* Window size 만큼의 앞 뒤의 context 를 참조해서 word embedding vector 생성
 
 * CBOW
 	![CBOW](images/3_2.png "CBOW")
 	* Predict word based on sum of surrounding embeddings
 	* Look up 이 embedding matrix 결과들을 하나하나 다 더해
 	* Center 단어가 뭘까요를 예측하는 방식인 것
+		* loss function=-log(P(w_t | w_t-1, w_t+1))
 	* Supervised 처럼 보이지만 정답지를 만들 필요가 없어진다
 	* Matrix 가 되게 shallow 해서 빨라 --> 그냥 cpu 에서만 돌려도 됑
 
@@ -30,6 +33,7 @@
 	![Skip-gram](images/3_3.png "Skip-gram")
 	* Predict each word in the context given the word
 	* 가운데 단어로 주변 단어를 예측함
+		* loss function=-log(P(w_t-1, w_t+1 | w_t))
 	* 주변 단어들을 기반으로 한번씩 계산
 	* 단어간에 어떤 부분의 weight 가 더올라가게 될지 물론 경쟁이 있겠지만 데이터가 짱 많으면 괜찮을거얌
 	* 파란색이 word size
@@ -39,7 +43,7 @@
 	* Log(k) --> negative sampling (뒷부분이 무거워서 쓰는 다른 방법)
 
 * GloVe
-	- 통계적 방법
+	- 통계적 방법 + 학습 방법
 	![GloVe](images/3_4.png "GloVe")
 	* A matrix factorization approach motivated by ratios of P(word | context) probabilities
 	* 단점 : word * context matrix 를 반드시 만들어야 진행이 가능해서 scalability 에 문제가 있어
