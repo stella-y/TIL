@@ -19,6 +19,9 @@
 			* Context Window Methods
 				* **cbow, skipgram**
 				* Window size 만큼의 앞 뒤의 context 를 참조해서 word embedding vector 생성
+				* (window-1) 만큼의 앞뒷 문장을 embedding layer 에서 가져옴 / embedding 계층은 단어 분산 표현 담게 되며, 순전파시 지정한 단어 id의 벡터를 추출함
+				* negative sampling 해서 다중 분류를 이진분류로 치환해서 문제 해결함
+				* 이렇게 추출한 word2vec에는 단어의 의미가 녹아있으며, 비슷한 맥락에서 사용되는 단어는 단어 벡터공간에서 가까이에 위치함
 
 * CBOW
 	![CBOW](images/3_2.png "CBOW")
