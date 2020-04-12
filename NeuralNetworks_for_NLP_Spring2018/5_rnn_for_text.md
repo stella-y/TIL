@@ -24,9 +24,17 @@
 		* time step 간 additive 한 connection 을 만들어가
 		* 곱셈아닌 덧셈 이용해서 gradient 가 사라지는걸 방지
 		![LSTM](images/5_5.png "LSTM")
-			* C_t : 냉장고라 표현 / 전달되는 것들을 c로 따로 빼놔
+			* C_t : 과거로부터 시각 t 까지에 필요한 모든 정보(기억셀 / 냉장고)
+			(tanh(xtwg+ht-1wg+b))
 			* I --> gate (sigmoid) -~100% 사이에서 냉장고에 몇퍼센트나 넣어 놓을 것인가
-			* O --> output 에 얼마나 많이 넣을 것인가
+			각 원소가 새로 추가되는 정보로써의 가치가 얼마나 큰지를 판단
+			(sig(xtwi+hi-1wi+b))
+			- O -> 다음 h_t의 출력을 담당
+			x_t, h_t-1로 만들어짐
+			tanh(c_t)(h_t)의 각 원소에 대해 그것이 다음 시각의 은닉 상태에서 얼마나 중요한지를 조정
+			(sig(xtwo+ht-1wo+bt))
+			- u -> update or forget
+			memory cell 에 어떤걸 추가할지 결정 (sig(xtwt+ht-1wt+bt))
 	* 이외에도 여러 대안이 있당
 		* Lots of variants of LSTMs (Hochreiter and Schmidhuber, 1997)
 		* Gated recurrent units (GRUs; Cho et al., 2014)
@@ -43,6 +51,10 @@
 		* Bucketing/sorting
 			* 길이가 비슷한 sentence 끼리 같은 batch 로 돌아가게해서 성능이 향상될 수 있을 것
 			* Sentence 길이가 비슷해서 공간 낭비가 크지 않게 될것이당
+3. overfitting
+- drop out or normalization
+	- variational dropout
+		- 같은 계층에 속한 drop out 들은 같은 mask를 공유하도록
 * Handling long sequences
 	* 긴 문장에서 long-term dependency 를 capture 하고 싶어질 경우가 있음
 	* 근데 이게 메모리에 맞지 않는다면...
@@ -50,6 +62,7 @@
 		* BackPropagation Through Time
 		* State 는 그대로 가는데 backpropagation 은 처음부터 끝까지 다 하는게 아니고 중간에까지만 해버리는 것
 		![Truncated_BPTT](images/5_7.png "Truncated_BPTT")
+		- forward 은닉층은 그대로 잇고, backward는 끊어버림
 
 ### Pre-training/Transfer learning for rnn
 * rnn 이 성능은 좋은데 데이터가 많이 필요하고, 오래걸림

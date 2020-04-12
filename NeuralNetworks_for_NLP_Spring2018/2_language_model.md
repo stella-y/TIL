@@ -9,6 +9,9 @@
 			![count-based](images/2_2.png "count-based")
 			perplexity
 			![perplexity](images/2_3.png "perplexity")
+			- cross entropy를 지수승으로
+			- 분기수(다음에 취할 수 있는 선택사항의 수)로 해석 가능
+			- 작을수록 좋은 것
 		2. linear model로
 			이 문장이 말이 된다/ 안된다
 			* 문제와 그 해결
