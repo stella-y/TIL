@@ -37,7 +37,7 @@
 - deep network 로 생성한 low dimensional embedding layer 를 만들고, 두 벡터의 dot product 를 factorizing 함
 
 ### Feature 활용
-- Score 는 P(y|X)
+- Score 는 P(y\|X)
 - Feature(query)
 	- User feature
 		- e.g. country, language
