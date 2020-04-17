@@ -1,13 +1,14 @@
 ### 1. AUTOMATIC SPEECH EMOTION RECOGNITION USING RECURRENT NEURAL NETWORKS WITH LOCAL ATTENTION
-- ms에서 한건데, 이거 참고해서 하면 싫어할라나...
 - [https://github.com/gogyzzz/localatt_emorecog](https://github.com/gogyzzz/localatt_emorecog)
 - [https://github.com/raulsteleac/Speech_Emotion_Recognition/blob/master/model.py](https://github.com/raulsteleac/Speech_Emotion_Recognition/blob/master/model.py)
+
 
 ### 2. ***CNN+LSTM Architecture for Speech Emotion Recognition with Data Augmentation***
 - feb. 2018, ***sota***
 - [https://paperswithcode.com/paper/cnnlstm-architecture-for-speech-emotion](https://paperswithcode.com/paper/cnnlstm-architecture-for-speech-emotion)
 - ***구현체가 없어서 아쉽지만 vtlp augmentation은 언제든 활용가능한듯***
 - [https://github.com/makcedward/nlpaug](https://github.com/makcedward/nlpaug)
+- 논문 내용
     1. 개요
         - SER 데이터 다룰때에 두가지 방법
             1. hand-crafted acoustic feature 제작 해서 neural net 에 넣는 방법

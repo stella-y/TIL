@@ -71,6 +71,12 @@ catastrophic forgetting - continual learning (incremental training / inclusive t
 			1. 가장 단순하게는 majority vote
 			2. PICO(Probabilistic Iterative COrrelation)
 				- checker 의 결과가 soft value 인걸 이용하고자(majority vote 와는 달리)
+				* checker 결과 베이지안 확률 결합 / labeling 의 iterative probabilistic correction
+					* 
+					* 
+					* 
+				* 레이블링 히스토리를 hidden markov modeling 으로 반영
+				* 
 
 
 
