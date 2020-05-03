@@ -273,10 +273,118 @@ if __name__ == "__main__":
 9. Route Planner
 - problem
 ```
+As a part of the route planner, the route_exists method is used as a quick filter if the destination is reachable, before using more computationally intensive procedures for finding the optimal route.
 
+The roads on the map are rasterized and produce a matrix of boolean values - True if the road is present or False if it is not. The roads in the matrix are connected only if the road is immediately left, right, below or above it.
+
+Finish the route_exists method so that it returns True if the destination is reachable or False if it is not. The from_row and from_column parameters are the starting row and column in the map_matrix. The to_row and to_column are the destination row and column in the map_matrix. The map_matrix parameter is the above mentioned matrix produced from the map.
+
+For example, the following code should return True since destination is reachable:
+
+map_matrix = [
+    [True, False, False],
+    [True, True, False],
+    [False, True, True]
+];
+
+route_exists(0, 0, 2, 2, map_matrix)
 ```
 - solution
 ```python
+def route_exists(from_row, from_column, to_row, to_column, map_matrix):
+    stack=[(from_row, from_column)]
+    visited={(from_row, from_column):True}
+    while stack:
+        r, c=stack.pop()
+        #print(str(r)+", "+str(c))
 
+        if r==to_row and c==to_column:
+            return True
+        else:
+            for (i, j) in [[0, 1], [0, -1], [-1, 0], [1, 0]]:
+                n_r, n_c=(r+i, c+j)
+                if n_r >= 0 and n_c>=0 and n_r<len(map_matrix) and n_c<len(map_matrix[0]) and map_matrix[n_r][n_c]:
+                    if (n_r, n_c) not in visited:
+                        #visited.append((n_r, n_c))
+                        visited[(n_r, n_c)]=True
+                        stack.append((n_r, n_c))
+    return False
+
+if __name__ == '__main__':
+    map_matrix = [
+        [True, False, False],
+        [True, True, False],
+        [False, True, True]
+    ];
+
+    print(route_exists(0, 0, 2, 2, map_matrix))
 ```
+10. Ice Cream Machine
+- problem
+```
+Implement the IceCreamMachine's scoops method so that it returns all combinations of one ingredient and one topping. If there are no ingredients or toppings, the method should return an empty list.
 
+For example, IceCreamMachine(["vanilla", "chocolate"], ["chocolate sauce"]).scoops() should return [['vanilla', 'chocolate sauce'], ['chocolate', 'chocolate sauce']].
+```
+- solution
+```python
+class IceCreamMachine:
+    
+    def __init__(self, ingredients, toppings):
+        self.ingredients = ingredients
+        self.toppings = toppings
+        
+    def scoops(self):
+        ans=[]
+        for i in range(len(self.ingredients)):
+            for j in range(len(self.toppings)):
+                ans.append([self.ingredients[i], self.toppings[j]])
+        return ans
+
+
+if __name__ == "__main__":
+    machine = IceCreamMachine(["vanilla", "chocolate"], ["chocolate sauce"])
+    print(machine.scoops()) #should print[['vanilla', 'chocolate sauce'], ['chocolate', 'chocolate sauce']]
+```
+11. Merge Names
+- problem
+```
+Implement the unique_names method. When passed two lists of names, it will return a list containing the names that appear in either or both lists. The returned list should have no duplicates.
+
+For example, calling unique_names(['Ava', 'Emma', 'Olivia'], ['Olivia', 'Sophia', 'Emma']) should return a list containing Ava, Emma, Olivia, and Sophia in any order.
+```
+- solution
+```python
+def unique_names(names1, names2):
+    ans=set(names1)
+    for n in names2:
+        ans.add(n)
+    return list(ans)
+
+if __name__ == "__main__":
+    names1 = ["Ava", "Emma", "Olivia"]
+    names2 = ["Olivia", "Sophia", "Emma"]
+    print(unique_names(names1, names2)) # should print Ava, Emma, Olivia, Sophia
+```
+12. Route Planner
+- problem
+```
+As part of a data processing pipeline, complete the implementation of the pipeline method:
+
+The method should accept a variable number of functions, and it should return a new function that accepts one parameter arg.
+The returned function should call the first function in the pipeline with the parameter arg, and call the second function with the result of the first function.
+The returned function should continue calling each function in the pipeline in order, following the same pattern, and return the value from the last function.
+For example, pipeline(lambda x: x * 3, lambda x: x + 1, lambda x: x / 2) then calling the returned function with 3 should return 5.0.
+```
+- solution
+```python
+def pipeline(*funcs):
+    def helper(arg):
+        for f in funcs:
+            arg=f(arg)
+        return arg
+    return helper
+            
+fun = pipeline(lambda x: x * 3, lambda x: x + 1, lambda x: x / 2)
+print(fun(3))
+```
