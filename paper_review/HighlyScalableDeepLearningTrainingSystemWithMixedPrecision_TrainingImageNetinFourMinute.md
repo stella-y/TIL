@@ -42,6 +42,27 @@
 
 ### 4. System implementation and optimization
 #### 4.1 Mixed-precision training with LARS
-- 
+- half-precision 을 naive 하게 적용하면 gradient vanish 나 training process가 stall 될 수 있음
+- mixed 된 형태로 half-precision 적용
+	forward and backward propagation (fp 16)
+	-> cast to single precision(fp 32)
+	-> LARS (fp 32)
+	-> weight update (fp 32)
+	-> 32 to 16
+	-> forward and backward
 
 #### 4.2 Improvements on model architecture
+- 두가지 측면에서 향상시킴
+1. eliminated weight decay on the bias and batch norm
+2. adding proper batch norm layer for AlexNet
+
+
+
+
+
+
+
+
+
+
+
