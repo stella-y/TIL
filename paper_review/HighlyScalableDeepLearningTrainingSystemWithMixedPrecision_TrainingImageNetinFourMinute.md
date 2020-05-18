@@ -54,7 +54,25 @@
 #### 4.2 Improvements on model architecture
 - 두가지 측면에서 향상시킴
 1. eliminated weight decay on the bias and batch norm
+	- 이때 affine transform 에 관여하지 않는 b, beta gamma 는 unregularize 상태로 두는게 top1 accuracy 가 더 나았음
 2. adding proper batch norm layer for AlexNet
+	- alexnet의 pooling layer 5번 이후에 feature map distribution의 variance 등이 커지는 걸 보고 이 이후에 batch norm layer를 추가함
+
+#### 4.3 Improvements on Communication Strategies
+- k개 gpu면 k개 chunk 로 나누고, k-1개의 reduce iteration 이 필요해짐
+- k가 커지면 node 간 message passing 이 늘어나서 성능에 악영향을 줄 것
+- 아래 두가지 전략 이용해서 극복함
+1. Tensor Fusion
+	- core idea : all-reduce 하기 전에 작은 사이즈의 여러 tensor들을 pack 하는 것(network bandwidth 감소)
+		- 이유 : convolution layer의 gradient tensor size 가 fully-connected layer보다는 훨씬 작을텐데, 너무 작은 tensor를 network 로 주고받는건, latency 만 늘릴 것
+	- buffer 를 둬서, 사이즈가 parameter theta 보다 커질때만 fused tensor 를 all-reduce 하는 것
+2. Hierarchical all-reduce
+	- tensorfusion 쓰면 throughput 이 8배 증가 / 단 latency 는 증가할 것
+		- tensor 를 묶어버리는게 마지막 몇개 레이어 혹은 backward propagation 에서 earlier layer 몇개에서는 gradient aggregation 의 병렬화를 막게 될 것이므로
+	- tensor fusion 에 몇가지 제한 사항을 둔다.
+
+2. Hybrid all-reduce
+
 
 
 참고 자료
