@@ -57,6 +57,15 @@
 2. adding proper batch norm layer for AlexNet
 
 
+참고 자료
+1. All-reduce : https://brunch.co.kr/@chris-song/96
+2. LARS : https://www.kakaobrain.com/blog/113
+3. Quantization : 
+- https://towardsdatascience.com/speeding-up-deep-learning-with-quantization-3fe3538cbb9
+- https://post.naver.com/viewer/postView.nhn?volumeNo=19437431&memberNo=20717909
+- on tensorflow http://itteckmania.blogspot.com/2018/03/quantize.html
+
+
 
 
 
