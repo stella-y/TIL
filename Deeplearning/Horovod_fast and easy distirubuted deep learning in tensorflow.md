@@ -23,3 +23,9 @@
 * https://eng.uber.com/horovod/
 * https://arxiv.org/abs/1802.05799
 
+Horovod
+- Tensorflow, Keras, Pytorch, MXNet에서의 Multi-GPU를 활용한 Distributed Training을 지원하는 Framework
+- 적은량의 코드를 추가하여 손 쉽게 Distributed Training을 구현할 수 있게 해준다
+
+distributed training의 전반적인 동작방식
+- 
