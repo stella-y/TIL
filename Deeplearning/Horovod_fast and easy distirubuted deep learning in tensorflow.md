@@ -1,9 +1,11 @@
 ## Horovod: fast and easy distributed deep learning in TensorFlow
-### why large-scale training?
+### Why (large-scale training?)
 - batter accuracy
 	- single machine 에서 할 때에 batch size 를 크게 하는게 어려워짐 --> machine 을 여러개 써서, larget scale data 에 대해서도 batch norm 이 의미있게 만들겠다
 - fast training
 	- 당연한 얘기지만 속도
+
+### How?
 - 어느정도 성숙한 라이브러리엔 distributed 로 쓸 수 있게 하는 옵션이 있음(e.g. distributed tensorflow 등)
 	- 근데 utilization 이 fully 되지는 못한다
 - **distributed 하는 방식**
@@ -25,13 +27,36 @@
 	- ring-allreduce
 	![ring-allreduce](images/horovod_1.png "allreduce")
 		* ring 형태로 주고받고 나니 gradient가 전체에 전송되는데에 2(n-1)iteration 이면 된다.
-	- tensor fusion
-	- mpi 이용
 
 
-
+### 설치 방법
+1. open mpi 설치
+```sh
+gunzip -c openmpi-4.0.3.tar.gz | tar xf -
+cd openmpi-4.0.3
+./configure --prefix=/usr/local
+make all install
+```
+	- make 하는 중에 접근 권한 에러 발생하기도 함(명령어 앞에 sudo 붙이면 됨)
+2. mpi 설치 확인
+```sh
+mpirun
+```
+	- mpirun 하는 중에 아래와 같이 library 에러가 뜰 경우
+```
+mpirun: error while loading shared libraries: libopen-rte.so.40: cannot open shared object file: No such file or directory
+```
+	- 아래의 명령어로 공유 라이브러리 캐시를 다시 설정해주면 된다
+```sh
+sudo ldconfig
+```
+3. horovod 설치
+```sh
+HOROVOD_GPU_OPERATIONS=NCCL pip install horovod
+```
 
 ## 참고 자료
 - https://eng.uber.com/horovod/
 - https://arxiv.org/abs/1802.05799
 - https://y-rok.github.io/deep%20learning/2019/12/19/horovod-tensorflow.html
+- https://github.com/horovod/horovod
