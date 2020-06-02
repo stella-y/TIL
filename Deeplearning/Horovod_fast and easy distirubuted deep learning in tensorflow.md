@@ -30,7 +30,7 @@
 
 
 ### 설치 방법
-1. open mpi 설치
+1. open mpi 설치 (download from https://www.open-mpi.org/software/ompi/v4.0/)
 ```sh
 gunzip -c openmpi-4.0.3.tar.gz | tar xf -
 cd openmpi-4.0.3
