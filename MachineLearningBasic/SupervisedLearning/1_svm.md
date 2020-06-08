@@ -21,7 +21,7 @@
 	* 커널 차원을 높여서 다양한 결정경계 만든다.
 * 주요 파라미터 두개(Cost / Gamma)
 	* cost : svm 모델에 얼만큼 오차를 허용할 것인지를 나타냄
-		* cost 값이 작으면 --> margin 폭 넓으짐
+		* cost 값이 작으면 --> margin 폭 넓어짐
 	* gamma : (hyperplane 이 아닌 kernel과 관련(radial 등)) 가우시안 함수의 표준편차를 조정
 		* gamma 값 커지면 --> 작은 표준편차 가짐
 * kernel
