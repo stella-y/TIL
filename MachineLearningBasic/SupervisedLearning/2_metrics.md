@@ -1,3 +1,5 @@
+html header: <script type="text/javascript"  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 ## 분류 모델에 쓸 수 있는 metric
 ### confusion matrix
 |     | y^=1 | y^=0 |
