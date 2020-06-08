@@ -7,7 +7,7 @@
 
 * accuracy
 	* (true positive+ true nagative)/(전체 데이터(positive + negative))
-	\frac{참값}{전체 데이터}=\frac{True Positive +TrueNegative}{Positive + Negative}
+	$$\frac{참값}{전체 데이터}=\frac{True Positive +TrueNegative}{Positive + Negative}$$
 * error rate
 	* (false positive + false negative)/전체 데이터(positive + negative)
 * recall
