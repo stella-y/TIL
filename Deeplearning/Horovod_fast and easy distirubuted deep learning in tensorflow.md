@@ -27,6 +27,18 @@
 	- ring-allreduce
 	![ring-allreduce](images/horovod_1.png "allreduce")
 		* ring 형태로 주고받고 나니 gradient가 전체에 전송되는데에 2(n-1)iteration 이면 된다.
+- Horovod Concept
+	- core principle 은 MPI 에서의 size, rank, local rank, allreduce, allgather, broadcast 를 기반으로 함
+	- e.g. server 4대, 각 gpu 4대라면
+		- size (number of process) = 16
+		- rank (unique process id) = 0 to 15
+		- local rank (server 내 unique process id) = 0 to 3
+		- allreduce / allgather / broadcast 로 데이터 aggregate and distributes.
+	- https://github.com/horovod/horovod/blob/master/docs/concepts.rst
+- 기타 horovod 특징
+	- Tensor fusion 사용
+	- performance 시각화 가능 (https://github.com/horovod/horovod/blob/master/docs/timeline.rst)
+	- Performance autotuning 가능 (https://github.com/horovod/horovod/blob/master/docs/autotune.rst)
 
 
 ### 설치 방법
@@ -54,6 +66,14 @@ sudo ldconfig
 ```sh
 HOROVOD_GPU_OPERATIONS=NCCL pip install horovod
 ```
+
+- NCCL과 MPI 가 모두 필요한 이유
+	- horovod 가 처음 만들어질때에는 모든 연산이 mpi 를 통해 이뤄졌음 (NCCL 개발 전 혹은 성능이 잘 나오지 않을때였음)
+	- gpu간 communication 면에서는 NCCL 이 더 빨라서 이부분은 NCCL 로 대체됐고, 나머지는 환경 관리 등(rank, size, which process is the "master" 등등)은 MPI 로 남아있음
+	- Nvidia docs 에서는 cpu-cpu communication 에서는 MPI, gpu-gpu communication 에서는 NCCL 이라고 설명되고 있음
+	- https://stackoverflow.com/questions/53498952/tensorflow-horovod-nccl-and-mpi
+
+
 
 ## 참고 자료
 - https://eng.uber.com/horovod/
