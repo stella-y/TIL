@@ -47,13 +47,13 @@
 		- e.g. app age, historical statistics of an app
 
 ### Recomender system architecture
-![recommender_system](images/wideanddeep1.png "recommender system")
+![recommender_system](image/wideanddeep1.png "recommender system")
 #### Retrieval system
 - 후보군을 줄이는 역할
 - score 를 계산하는건 여기서 걸러진 item(전체 item 에 대해서 추천 score 를 계산하지 않음)
 
 #### Model
-![model](images/wideanddeep2.png "model")
+![model](image/wideanddeep2.png "model")
 - The wide component
 	- Generalized linear model (y=w^T \*x +b)
 	- cross-product transformation 사용
@@ -63,7 +63,7 @@
 	- Ensemble 은 모델들을 각각 트레이닝 한 후에, 예측할때 결과를 합치는 방식이라면, joint training 은 각 파라미터들을 동시에 학습함
 
 ### System implementation
-![System](images/wideanddeep3.png "System")
+![System](image/wideanddeep3.png "System")
 - Data Generation
 	- Vocabulary Generator : categorical feature string 을 정수 id 로 변환
 - Model Training
