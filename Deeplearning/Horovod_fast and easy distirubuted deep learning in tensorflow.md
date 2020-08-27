@@ -62,9 +62,27 @@ mpirun: error while loading shared libraries: libopen-rte.so.40: cannot open sha
 ```sh
 sudo ldconfig
 ```
-3. horovod 설치
+3. gcc, g++ version 맞추기 (4.8, 4.9 or 7이상 - tf2.0)
 ```sh
-HOROVOD_GPU_OPERATIONS=NCCL pip install horovod
+sudo -E apt-get update
+sudo -E apt install software-properties-common
+sudo -E add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo -E apt-get update
+sudo -E apt-get install gcc-7 g++-7 gcc-7-multilib g++-7-multilib
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 90 --slave /usr/bin/g++ g++ /usr/bin/g++-7 --slave /usr/bin/gcov gcov /usr/bin/gcov-7
+sudo update-alternatives --config gcc
+gcc --version
+g++ --version
+```
+4. horovod 설치
+```sh
+git clone --recursive https://github.com/uber/horovod.git
+cd horovod
+python setup.py clean
+python setup.py sdist
+pip install --no-cache-dir ./dist/horovod-0.19.2.tar.gz
+HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_TENSORFLOW=1 HOROVOD_WITHOUT_MXNET=1 HOROVOD_WITHOUT_PYTORCH=1 setproxy pip install --no-cache-dir dist/horovod-0.19.2.tar.gz
+
 ```
 
 - NCCL과 MPI 가 모두 필요한 이유
@@ -77,6 +95,7 @@ HOROVOD_GPU_OPERATIONS=NCCL pip install horovod
 
 ## 참고 자료
 - https://eng.uber.com/horovod/
+- https://linuxize.com/post/how-to-install-gcc-compiler-on-ubuntu-18-04/
 - https://arxiv.org/abs/1802.05799
 - https://y-rok.github.io/deep%20learning/2019/12/19/horovod-tensorflow.html
 - https://github.com/horovod/horovod
